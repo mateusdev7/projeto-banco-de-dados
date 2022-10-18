@@ -1,0 +1,166 @@
+body {
+  margin: 0px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0 auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+ul,
+p {
+  margin: 0px;
+}
+label {
+  display: block;
+}
+
+input {
+  border: none;
+}
+
+input:focus {
+  outline: none;
+}
+
+input[type="radio"] {
+  margin: 0;
+}
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  height: auto;
+}
+
+* {
+  box-sizing: border-box;
+}
+input,
+label {
+  display: block;
+}
+.container-geral {
+  display: grid;
+  gap: 60px;
+  justify-content: center;
+}
+.form-deletar-usuario {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+.form-container {
+  width: 400px;
+  margin-left: 10px;
+  padding: 40px;
+  box-shadow: 0px 0px 10px #b4b5bd;
+  margin-top: 50px;
+}
+input {
+  border: 2px solid #ccc;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  box-sizin: border-box;
+  width: 100%;
+}
+label {
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+button {
+  outline: none;
+  border: none;
+  padding: 0.6rem;
+  border-radius: 0.5rem;
+  background: #cacaca;
+  box-sizin: border-box;
+}
+button:hover {
+  background: #000000;
+  transition: 0.3s;
+  color: #ffffff;
+  cursor: pointer;
+}
+.email-delet {
+  grid-column: 1 / -1;
+}
+.campo-deletar {
+  grid-row: 2;
+}
+.container-menu {
+  width: 250px;
+  height: 100vh;
+  background: #111825;
+  color: #bec2c9;
+  padding: 1rem;
+  float: left;
+}
+.navegacao li {
+  margin-bottom: 1rem;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+.sub-menu-relatorios li,
+.sub-menu-remover-registros li,
+.sub-menu-inserir li,
+.sub-menu-atualizar li {
+  margin-bottom: 0px;
+  margin-left: 1.7rem;
+  margin-top: 0.5rem;
+  color: #fafafa;
+  cursor: pointer;
+}
+.sub-menu-relatorios li:hover,
+.sub-menu-remover-registros li:hover,
+.sub-menu-inserir li:hover,
+.sub-menu-atualizar li:hover {
+  color: #ff8a00;
+  transition: all 0.2s ease-in-out;
+}
+.relatorio-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.relatorio-button::before {
+  content: url("../../assets/report_icon.svg");
+  display: inline-block;
+}
+.inserir-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.inserir-button::before {
+  content: url("../../assets/insert_icon.svg");
+  display: inline-block;
+}
+.remove-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.remove-button::before {
+  content: url("../../assets/remove_icon.svg");
+  display: inline-block;
+}
+.atualizar-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.atualizar-button::before {
+  content: url("../../assets/update_icon.svg");
+  display: inline-block;
+}
