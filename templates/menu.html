@@ -5,162 +5,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/menu/menu.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Menu de Opções</title>
   </head>
-  <style>
-    body {
-      margin: 0px;
-      font-family: Arial, Helvetica, sans-serif;
-      margin: 0 auto;
-    }
-
-    h1,
-    h2,
-    h3,
-    h4,
-    ul,
-    p {
-      margin: 0px;
-    }
-    label {
-      display: block;
-    }
-
-    input {
-      border: none;
-    }
-
-    input:focus {
-      outline: none;
-    }
-
-    input[type="radio"] {
-      margin: 0;
-    }
-    ul {
-      padding: 0;
-      list-style: none;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    img {
-      max-width: 100vw;
-      display: block;
-      height: auto;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    input,
-    label {
-      display: block;
-    }
-    .container-menu {
-      width: 250px;
-      height: 100vh;
-      background: #111825;
-      color: #bec2c9;
-      padding: 1rem;
-      float: left;
-    }
-    .navegacao li {
-      margin-bottom: 1rem;
-      font-weight: bold;
-      font-size: 0.9rem;
-    }
-    .sub-menu-relatorios li, .sub-menu-remover-registros li, .sub-menu-inserir li, .sub-menu-atualizar li {
-      margin-bottom: 0px;
-      margin-left: 1.7rem;
-      margin-top: 0.5rem;
-      color: #FAFAFA;
-      cursor: pointer;
-    }
-    .sub-menu-relatorios li:hover, .sub-menu-remover-registros li:hover, .sub-menu-inserir li:hover, .sub-menu-atualizar li:hover {
-      color: #FF8A00;
-      transition: all 0.2s ease-in-out;
-    }
-    .relatorio-button {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .relatorio-button::before {
-      content: url("./assets/report_icon.svg");
-      display: inline-block;
-    }
-    .inserir-button {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .inserir-button::before {
-      content: url("./assets/insert_icon.svg");
-      display: inline-block;
-    }
-    .remove-button {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .remove-button::before {
-      content: url("./assets/remove_icon.svg");
-      display: inline-block;
-    }
-    .atualizar-button {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .atualizar-button::before {
-      content: url("./assets/update_icon.svg");
-      display: inline-block;
-    }
-
-
-    table, th, td {
-      border: 1px solid black;
-      text-align: center;
-    }
-    table {
-      margin-bottom: 16px
-    }
-    .main-bg {
-      display: flex;
-      justify-content: center;
-    }
-    .container-main {
-      width: 600px;
-      box-shadow: 0px 0px 10px #B4B5BD;
-      display: grid;
-      place-content: center;
-      padding: 40px 20px;
-      margin-top: 50px;
-      border-radius: 20px;
-    }
-    .container-main h2 {
-      margin-bottom: 20px;
-      text-transform: uppercase;
-    }
-    .container-info {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-    }
-    .info-integrantes h3, .info-professor h3 {
-      margin-bottom: 4px;
-    }
-    .info-integrantes p, .info-professor p{
-      margin-bottom: 8px;
-    }
-  </style>
   <body>
     <aside class="container-menu">
       <a href="menu.html">
@@ -229,12 +78,7 @@
         </div>
       </div>
     </main>
-    <div>
-      <button data-botao>Gerar resultado</button>
-      <p data-resposta></p>
-    </div>
     <script src="../../scripts/users/searchUser.js"></script>
     <script src="../../scripts/profession/searchProfession.js"></script>
-    <script src="../../scripts/userprofession/userProfessionListAll.js"></script>
   </body>
 </html>

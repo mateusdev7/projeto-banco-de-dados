@@ -54,7 +54,8 @@ function updateProfession() {
     xhrUpdate.setRequestHeader("Content-Type", "application/json");
     xhrUpdate.onreadystatechange = function () {
       if (xhrUpdate.readyState === 4 && xhrUpdate.status === 200) {
-        responseUpdateProfession.textContent = "Modificou";
+        const retorno = JSON.parse(this.responseText);
+        responseUpdateProfession.textContent = retorno.description;
       }
     };
     xhrUpdate.send(data);
