@@ -19,7 +19,9 @@
   <img style="max-width: 100%" src="https://imgur.com/tcpdKpn.jpg"/>
   <h4>python UsersService.py</h4>
   <img style="max-width: 100%" src="https://imgur.com/UfKCnUM.jpg"/>
-  
 </ol>
 <p>Com isso, os servidores vão estar no Ar e todos os processos estaram funcionando.</p>
+
+<h1>Link para o vídeo</h1>
+<a href="https://www.youtube.com/watch?v=gVrWpKsL4do&ab_channel=MateusPaulo">Clique aqui e acesse o vídeo</a>
 
