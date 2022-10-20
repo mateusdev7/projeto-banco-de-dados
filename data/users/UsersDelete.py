@@ -1,19 +1,19 @@
-import connection.DataBaseConnection as db
+import cx_Oracle
 from ResponseModel import ResponseModel
 class UserDelete:
   def delete(User):
-    if db.connection.is_connected():
-        cursor = db.connection.cursor()
-        sql = """DELETE FROM users WHERE id = %s"""
-        data = (User.id)
-        try:
-            cursor.execute(sql, (data,))
-            db.connection.commit()
-            cursor.close()
-            # db.connection.close()
-            responseModel = ResponseModel(True, "Registro apagado com sucesso!")
-            return responseModel
-        except db.Error as error:
-            return ResponseModel(False, error)
-    else:
+    dsn_tns = cx_Oracle.makedsn('localhost', '1521', 'xe')
+    connection = cx_Oracle.connect(user='SYSTEM', password='BancoDados2021', dsn=dsn_tns)
+    cursor = connection.cursor()
+    dataUser = [(User.id)]
+    sql = ("""delete from users WHERE id = :0""")
+    try:
+        cursor.execute(sql, dataUser)
+        connection.commit()
+        cursor.close()
+        # db.connection.close()
+        responseModel = ResponseModel(True, "Usuário apagado com sucesso!")
+        return responseModel
+    except cx_Oracle.IntegrityError as e:
+        print(e)
         return ResponseModel(False, "Não foi possível criar uma conexão com o Banco de dados")

@@ -1,20 +1,22 @@
 import sys
+import cx_Oracle
 sys.path.append('C:\Apache24\htdocs')
-import connection.DataBaseConnection as db
 from ResponseModel import ResponseModel
 class ProfessionInsert:
   def insert(Profession):
-    if db.connection.is_connected():
-        cursor = db.connection.cursor()
-        sql = "INSERT INTO profession (description, yearsExperience) VALUES (%s, %s)"
-        data = (Profession.description, Profession.yearsExperience)
-        try:
-            cursor.execute(sql, data)
-            db.connection.commit()
-            cursor.close()
-            responseModel = ResponseModel(True, "Profissão criada com sucesso!")
-            return responseModel
-        except db.Error as error:
-            return ResponseModel(False, error)
-    else:
+    dsn_tns = cx_Oracle.makedsn('localhost', '1521', 'xe')
+    connection = cx_Oracle.connect(user='SYSTEM', password='BancoDados2021', dsn=dsn_tns)
+    cursor = connection.cursor() 
+    dataProfession =  [[Profession.description]] 
+    sql = """insert into profession (description) values(:1)"""
+    connection.commit()
+    try:
+      cursor.executemany(sql, dataProfession)
+      connection.commit()
+      responseModel = ResponseModel(True, "Profissão criada com sucesso!")
+      return responseModel
+    except cx_Oracle.IntegrityError as e:
+        print(e)
         return ResponseModel(False, "Não foi possível criar uma conexão com o Banco de dados")
+
+        

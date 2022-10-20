@@ -1,10 +1,11 @@
 class Users(object):
-    def __init__(self, id, name, email, descriptionAccess, phone, zipCode, number, complement):
+    def __init__(self, id, name, email, descriptionAccess, phone, zipCode, numberHome, complement, professionName):
         self.id = id
         self.name = name 
         self.email = email 
         self.descriptionAccess = descriptionAccess 
         self.phone = phone 
         self.zipCode = zipCode 
-        self.number = number 
-        self.complement = complement 
+        self.numberHome = numberHome 
+        self.complement = complement
+        self.professionName = professionName

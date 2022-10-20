@@ -16,8 +16,8 @@ CORS(app, support_credentials=True)
 @cross_origin(supports_credentials=True)
 def insert():
     data = json.loads(json.dumps(request.json))
-    insertUser = Profession(**data)
-    response = ProfessionInsert.insert(insertUser)
+    insertProfession = Profession(**data)
+    response = ProfessionInsert.insert(insertProfession)
     returnJson = json.dumps(response.__dict__).encode('utf8')
     return returnJson
 
@@ -25,8 +25,8 @@ def insert():
 @cross_origin(supports_credentials=True)
 def update():
     data = json.loads(json.dumps(request.json))
-    updateUser = Profession(**data)
-    response = ProfessionUpdate.update(updateUser)
+    updateProfession = Profession(**data)
+    response = ProfessionUpdate.update(updateProfession)
     returnJson = json.dumps(response.__dict__, ensure_ascii=False).encode('utf8')
     return returnJson
 
@@ -34,8 +34,8 @@ def update():
 @cross_origin(supports_credentials=True)
 def delete():
     data = json.loads(json.dumps(request.json))
-    deleteUser = Profession(**data)
-    response = ProfessionDelete.delete(deleteUser)
+    deleteProfession = Profession(**data)
+    response = ProfessionDelete.delete(deleteProfession)
     returnJson = json.dumps(response.__dict__, ensure_ascii=False).encode('utf8')
     return returnJson
 

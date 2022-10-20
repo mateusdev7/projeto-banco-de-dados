@@ -1,15 +1,16 @@
 import sys
+import cx_Oracle
 sys.path.append('C:\Apache24\htdocs')
-import connection.DataBaseConnection as db
 from ResponseModel import ResponseModel
 class UserPic:
   def pic(User):
-    if db.connection.is_connected():
-        cursor = db.connection.cursor()
-        sql = """SELECT * FROM users WHERE id=%s"""
-        data = (User.id)
+        dsn_tns = cx_Oracle.makedsn('localhost', '1521', 'xe')
+        connection = cx_Oracle.connect(user='SYSTEM', password='BancoDados2021', dsn=dsn_tns)
+        cursor = connection.cursor() 
+        dataUser = ([User.id])
+        sql = """SELECT * FROM users WHERE id=:0"""
         try:
-            cursor.execute(sql, (data,))
+            cursor.execute(sql, dataUser) 
             rows = cursor.fetchall()
             rowarray_list = []
             for row in rows:
@@ -20,13 +21,12 @@ class UserPic:
                         "descriptionAccess":row[3],
                         "phone": row[4],
                         "zipCode": row[5],
-                        "number": row[6],
+                        "numberHome": row[6],
                         "complement": row[7]
                         }
                 rowarray_list.append(users)
             cursor.close()
             return rowarray_list
-        except db.Error as error:
-            return ResponseModel(False, error)
-    else:
-        return ResponseModel(False, "Não foi possível criar uma conexão com o Banco de dados")
+        except cx_Oracle.IntegrityError as e:
+            print(e)
+            return ResponseModel(False, "Não foi possível criar uma conexão com o Banco de dados")

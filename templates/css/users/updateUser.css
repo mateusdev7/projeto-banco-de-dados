@@ -55,11 +55,21 @@ label {
   gap: 60px;
   justify-content: center;
 }
-.form-atualizar-usuario {
+.form-atualizar-usuario,
+.form-pesquisar-usuario {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
+
+.form-pesquisar-usuario {
+  grid-template-columns: 1fr;
+}
+
+.form-pesquisar-usuario button {
+  margin-bottom: 24px;
+}
+
 .form-container {
   width: 640px;
   margin-left: 10px;

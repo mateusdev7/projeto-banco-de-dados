@@ -1,20 +1,20 @@
 import sys
+import cx_Oracle
 sys.path.append('C:\Apache24\htdocs')
-import connection.DataBaseConnection as db
 from ResponseModel import ResponseModel
 class UserInsert:
   def insert(User):
-    if db.connection.is_connected():
-        cursor = db.connection.cursor()
-        sql = "INSERT INTO users (name, email, descriptionAccess, phone, zipCode, number, complement) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-        data = (User.name, User.email, User.descriptionAccess, User.phone, User.zipCode, User.number, User.complement)
-        try:
-            cursor.execute(sql, data)
-            db.connection.commit()
-            cursor.close()
-            responseModel = ResponseModel(True, "Usuário criado com sucesso!")
-            return responseModel
-        except db.Error as error:
-            return ResponseModel(False, error)
-    else:
+    dsn_tns = cx_Oracle.makedsn('localhost', '1521', 'xe')
+    connection = cx_Oracle.connect(user='SYSTEM', password='BancoDados2021', dsn=dsn_tns)
+    cursor = connection.cursor() 
+    dataUser =  [(User.name), (User.email), (User.descriptionAccess), (User.phone), (User.zipCode), (User.numberHome), (User.complement), (User.professionName)] 
+    sql = ("""insert into users (name, email, descriptionAccess, phone, zipCode, numberHome, complement, professionName) values(:0, :1, :2, :3, :4, :5, :6, :7)""")
+    connection.commit()
+    try:
+      cursor.execute(sql, dataUser)
+      connection.commit()
+      responseModel = ResponseModel(True, "Conta criada com sucesso!")
+      return responseModel
+    except cx_Oracle.IntegrityError as e:
+        print(e)
         return ResponseModel(False, "Não foi possível criar uma conexão com o Banco de dados")

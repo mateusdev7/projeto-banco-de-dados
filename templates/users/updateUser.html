@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/users/updateUser.css" />
-    <title>Update User</title>
+    <title>Atualizar Usuário</title>
   </head>
   <body>
     <aside class="container-menu">
@@ -57,7 +57,7 @@
     </aside>
     <div class="container-geral">
       <div class="form-container">
-        <form class="form-atualizar-usuario">
+        <form class="form-pesquisar-usuario">
           <h1
             style="
               color: green;
@@ -67,17 +67,19 @@
               margin-top: 20px;
               grid-column: 1 / -1;
             "
-            class="teste"
           >
             Atualizar Usuário
           </h1>
           <div>
-            <label for="id">ID para atualização</label>
+            <label for="id">ID</label>
             <input type="text" id="id" name="id" required />
           </div>
+          <button type="submit">Pesquisar usuário</button>
+        </form>
+        <form class="form-atualizar-usuario">
           <div>
-            <label for="nameUser">Nome do Usuário</label>
-            <input type="text" id="nameUser" name="nameUser" required />
+            <label for="name">Nome do Usuário</label>
+            <input type="text" id="name" name="name" required disabled/>
           </div>
 
           <div>
@@ -88,6 +90,7 @@
               name="email"
               placeholder="seuemail@email.com"
               required
+              disabled
             />
           </div>
 
@@ -99,6 +102,7 @@
               name="descriptionAccess"
               placeholder="********"
               required
+              disabled
             />
           </div>
 
@@ -110,6 +114,7 @@
               name="phone"
               placeholder="(DDD) 00000-0000"
               required
+              disabled
             />
           </div>
 
@@ -121,35 +126,32 @@
               name="zipCode"
               placeholder="00000-000"
               required
+              disabled
             />
           </div>
 
           <div>
-            <label for="number">Número da Casa</label>
+            <label for="numberHome">Número da Casa</label>
             <input
               type="number"
-              id="number"
-              name="number"
+              id="numberHome"
+              name="numberHome"
               placeholder="000"
               required
+              disabled
             />
           </div>
 
           <div>
             <label for="complement">Complemento</label>
-            <input type="text" id="complement" name="complement" required />
+            <input type="text" id="complement" name="complement" required
+            disabled />
           </div>
           <button>Atualizar Usuário</button>
-          <p
-            class="responseUpdateUser"
-            style="
-              color: blue;
-              font-weight: bold;
-              letter-spacing: 1px;
-              grid-column: 1/-1;
-            "
-          ></p>
         </form>
+        <p
+          class="responseUpdateUser"
+          style="color: blue; font-weight: bold;letter-spacing: 1px;grid-column: 1/-1;"></p>
       </div>
     </div>
     <script src="../../scripts/users/updateUser.js"></script>

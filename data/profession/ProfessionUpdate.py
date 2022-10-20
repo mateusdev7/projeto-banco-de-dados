@@ -1,19 +1,17 @@
-import connection.DataBaseConnection as db
+import cx_Oracle
 from ResponseModel import ResponseModel
 class ProfessionUpdate:
   def update(Profession):
-    if db.connection.is_connected():
-        cursor = db.connection.cursor()
-        sql = """UPDATE profession SET description=%s, yearsExperience=%s WHERE id=%s"""
-        data = (Profession.description, Profession.yearsExperience,Profession.id)
-        try:
-            cursor.execute(sql, data)
-            db.connection.commit()
-            cursor.close()
-            # db.connection.close()
-            responseModel = ResponseModel(True, "Alteração feita com sucesso!")
-            return responseModel
-        except db.Error as error:
-            return ResponseModel(False, error)
-    else:
-        return ResponseModel(False, "Não foi possível criar uma conexão com o Banco de dados")
+      dsn_tns = cx_Oracle.makedsn('localhost', '1521', 'xe')
+      connection = cx_Oracle.connect(user='SYSTEM', password='BancoDados2021', dsn=dsn_tns)
+      cursor = connection.cursor() 
+      dataProfession = [(Profession.description), (Profession.id)]
+      sql = """UPDATE profession SET description =:0 WHERE id =:1"""
+      try:
+          cursor.execute(sql, dataProfession)
+          connection.commit()
+          responseModel = ResponseModel(True, "Profissão atualizada com sucesso!")
+          return responseModel
+      except cx_Oracle.IntegrityError as e:
+          print(e)
+          return ResponseModel(False, "Não foi possível criar uma conexão com o Banco de dados")

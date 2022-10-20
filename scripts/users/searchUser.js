@@ -6,14 +6,10 @@ function sendJSON() {
   let xhr = new XMLHttpRequest();
   let url = "http://127.0.0.1:5000/search";
 
-  xhr.onreadystatechange = function () {
+  xhr.onreadystatechange = async function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
-      var myArr = JSON.parse(this.responseText);
+      var myArr = await JSON.parse(this.responseText);
       quantidadeUsuarios.textContent = myArr.length;
-      // console.log(myArr)
-      // myArr.forEach((item) => {
-      //   console.log(item.name)
-      // })
     }
   };
   // open a connection

@@ -75,9 +75,12 @@
               id="id"
               name="id"
               placeholder="Número do usuário"
-              required
             />
           </div>
+          <button class="firstDelete">Deletar Usuário</button>
+          <button class="confirmDelete">Confirmar</button>
+          <button class="cancelDelete">Cancelar</button>
+          <h4>Usuários disponíveis</h4>
           <p
             class="responseDeleteUser"
             style="
@@ -87,8 +90,8 @@
               grid-column: 1/-1;
             "
           ></p>
-          <button type="submit">Deletar Usuário</button>
         </form>
+        <p data-result></p>
       </div>
     </div>
     <script src="../../scripts/users/deleteUser.js"></script>

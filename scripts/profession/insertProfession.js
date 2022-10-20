@@ -1,8 +1,9 @@
-const description = document.getElementById('description');
-const yearsExperience = document.getElementById('yearsExperience');
-const responseCreateProfession = document.querySelector(".responseCreateProfession");
-const inputs = document.querySelectorAll('input');
-const form = document.querySelector('.form-inclusao-profissao');
+const description = document.getElementById("description");
+const responseCreateProfession = document.querySelector(
+  ".responseCreateProfession"
+);
+const inputs = document.querySelectorAll("input");
+const form = document.querySelector(".form-inclusao-profissao");
 
 function sendJSON(e) {
   e.preventDefault();
@@ -16,28 +17,26 @@ function sendJSON(e) {
 
   // Set the request header i.e. which type of content you are sending
   xhr.setRequestHeader("Content-Type", "application/json");
-  const yearsInt = parseInt(yearsExperience.value);
 
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
       const retorno = JSON.parse(this.responseText);
-      // TODO - Imprimir mensagem de retorno na tela
       responseCreateProfession.textContent = retorno.description;
+      setInterval(() => {
+        responseCreateProfession.textContent = ""
+      }, 2000)
     }
   };
 
-  // Converting JSON data to string
   var data = JSON.stringify({
     id: 0,
     description: description.value,
-    yearsExperience: yearsInt
   });
 
-  // Sending data with the request
   xhr.send(data);
   inputs.forEach((input) => {
     input.value = "";
-  })
+  });
 }
 
 form.addEventListener("submit", sendJSON);
