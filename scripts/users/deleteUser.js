@@ -63,7 +63,7 @@ function deleteUser(e) {
   };
 
   // Converting JSON data to string
-  var data = JSON.stringify({
+  const data = JSON.stringify({
     id: idInt,
     name: "",
     email: "",

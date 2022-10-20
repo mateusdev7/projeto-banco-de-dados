@@ -1,7 +1,6 @@
 import sys
 import cx_Oracle
 sys.path.append('C:\Apache24\htdocs')
-from conexao.DataBaseConnection import DataBaseConnection as db
 from ResponseModel import ResponseModel
 class UsersSearch:
   def search():
@@ -23,7 +22,7 @@ class UsersSearch:
                         "zipCode":row[5],
                         "numberHome":row[6],
                         "complement":row[7],
-                        "professionName": row[8]}
+                        "professionName":row[8]}
                 rowarray_list.append(student)
             cursor.close()
             return rowarray_list
