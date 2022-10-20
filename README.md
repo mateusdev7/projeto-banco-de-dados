@@ -27,3 +27,8 @@
 <h1>Link para o vídeo</h1>
 <a href="https://www.youtube.com/watch?v=Wpw8MsIgYGM&ab_channel=MateusPaulo">Clique aqui e acesse o vídeo</a>
 
+<h1>Imagens</h1>
+<img style="max-width: 100%" src="https://imgur.com/USfznXL.jpg"/>
+<img style="max-width: 100%" src="https://imgur.com/QnkzbPt.jpg"/>
+
+
