@@ -20,8 +20,10 @@
   <h4>python UsersService.py</h4>
   <img style="max-width: 100%" src="https://imgur.com/UfKCnUM.jpg"/>
 </ol>
+<h1>Passo final</h1>
+<p>Após executar todos os comandos supracitados, entre no sql developer e crie as tabelas com os códigos que estão na pasta ./model/users/users.sql e ./model/profession/profession.sql </p>
 <p>Com isso, os servidores vão estar no Ar e todos os processos estaram funcionando.</p>
 
 <h1>Link para o vídeo</h1>
-<a href="https://www.youtube.com/watch?v=gVrWpKsL4do&ab_channel=MateusPaulo">Clique aqui e acesse o vídeo</a>
+<a href="https://www.youtube.com/watch?v=Wpw8MsIgYGM&ab_channel=MateusPaulo">Clique aqui e acesse o vídeo</a>
 
