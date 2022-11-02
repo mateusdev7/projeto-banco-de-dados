@@ -22,9 +22,7 @@ class UserPic:
                         "phone": row[4],
                         "zipCode": row[5],
                         "numberHome": row[6],
-                        "complement": row[7],
-                        "professionName": row[8]
-                        }
+                        "complement": row[7]}
                 rowarray_list.append(users)
             cursor.close()
             return rowarray_list

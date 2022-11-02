@@ -22,10 +22,10 @@ function getDataUsers() {
 
   xhr.onreadystatechange = async function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
-      const myArr = await JSON.parse(this.responseText);
+      const myArr = JSON.parse(this.responseText);
       console.log(myArr)
       myArr.forEach((item) => {
-        createText(`${item.id} - ${item.name} - ${item.professionName}`)
+        createText(`${item.id} - ${item.name}`)
       })
     }
   };
@@ -72,7 +72,6 @@ function deleteUser(e) {
     zipCode: 0,
     numberHome: 0,
     complement: "",
-    professionName: ""
   });
   // Sending data with the request
   xhr.send(data);

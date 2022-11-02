@@ -6,8 +6,8 @@ class UserUpdate:
     connection = cx_Oracle.connect(user='SYSTEM', password='BancoDados2021', dsn=dsn_tns)
     cursor = connection.cursor()
     dataUser = [(User.name), (User.email), (User.descriptionAccess), 
-    (User.phone), (User.zipCode), (User.numberHome), (User.complement), (User.professionName), (User.id)]
-    sql = """UPDATE users SET name=:0, email=:1, descriptionAccess=:2, phone=:3, zipCode=:4, numberHome=:5, complement=:6, professionName=:7 WHERE id=:8"""
+    (User.phone), (User.zipCode), (User.numberHome), (User.complement), (User.id)]
+    sql = """UPDATE users SET name=:0, email=:1, descriptionAccess=:2, phone=:3, zipCode=:4, numberHome=:5, complement=:6, WHERE id=:7"""
     try:
         cursor.execute(sql, dataUser)
         connection.commit()

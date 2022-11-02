@@ -6,7 +6,6 @@ const phone = document.getElementById("phone");
 const zipCode = document.getElementById("zipCode");
 const numberHome = document.getElementById("numberHome");
 const complement = document.getElementById("complement");
-const professionName = document.getElementById('professionName');
 const form = document.querySelector(".form-inclusao-usuario");
 const responseCreateUser = document.querySelector(".responseCreateUser");
 const inputs = document.querySelectorAll('input');
@@ -46,8 +45,7 @@ function sendJSON(e) {
     phone: phone.value,
     zipCode: zipInt,
     numberHome: numberInt,
-    complement: complement.value,
-    professionName: professionName.value
+    complement: complement.value
   });
 
   // Sending data with the request

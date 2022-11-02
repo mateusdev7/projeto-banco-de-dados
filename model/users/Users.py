@@ -1,5 +1,5 @@
 class Users(object):
-    def __init__(self, id, name, email, descriptionAccess, phone, zipCode, numberHome, complement, professionName):
+    def __init__(self, id, name, email, descriptionAccess, phone, zipCode, numberHome, complement):
         self.id = id
         self.name = name 
         self.email = email 
@@ -8,4 +8,3 @@ class Users(object):
         self.zipCode = zipCode 
         self.numberHome = numberHome 
         self.complement = complement
-        self.professionName = professionName

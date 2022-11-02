@@ -7,6 +7,5 @@ create table users (
     zipCode number not null,
     numberHome number not null,
     complement varchar(100) not null,
-    professionName varchar(50) not null,
     primary key (id)
 );

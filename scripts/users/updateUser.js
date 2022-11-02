@@ -6,7 +6,6 @@ const phone = document.getElementById("phone");
 const zipCode = document.getElementById("zipCode");
 const numberHome = document.getElementById("numberHome");
 const complement = document.getElementById("complement");
-const professionName = document.getElementById('professionName');
 
 const formPesquisarUsuario = document.querySelector(".form-pesquisar-usuario");
 const formAtualizarUsuario = document.querySelector(".form-atualizar-usuario");
@@ -27,7 +26,6 @@ function picUser(e) {
     zipCode: "",
     numberHome: "",
     complement: "",
-    professionName: "",
   });
 
   xhr.open("POST", urlPic, true);
@@ -46,7 +44,6 @@ function picUser(e) {
         zipCode.disabled = false;
         numberHome.disabled = false;
         complement.disabled = false;
-        professionName.disabled = false;
       }
     }
   };
@@ -62,7 +59,6 @@ function showDataUser(myArr) {
   zipCode.value = myArr[0].zipCode;
   numberHome.value = myArr[0].numberHome;
   complement.value = myArr[0].complement;
-  professionName.value = myArr[0].professionName;
 }
 
 formPesquisarUsuario.addEventListener("submit", picUser);
@@ -82,7 +78,6 @@ function updateUser() {
     zipCode: zipInt,
     numberHome: numberInt,
     complement: complement.value,
-    professionName: professionName.value
   });
 
   xhrUpdate.open("POST", urlUpdate, true);
