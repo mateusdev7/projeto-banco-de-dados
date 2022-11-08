@@ -1,5 +1,5 @@
 import sys
-sys.path.append('C:\Apache24\htdocs')
+sys.path.append('C:/Apache24/htdocs/projeto-banco-de-dados/projeto-banco-de-dados/')
 import cx_Oracle 
 from util.Message import Message as message 
 

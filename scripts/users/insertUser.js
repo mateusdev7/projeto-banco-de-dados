@@ -1,4 +1,3 @@
-const id = document.getElementById("id");
 const name = document.getElementById("nameUser");
 const email = document.getElementById("email");
 const descriptionAccess = document.getElementById("descriptionAccess");
@@ -26,18 +25,21 @@ function sendJSON(e) {
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
       const retorno = JSON.parse(this.responseText);
-      // TODO - Imprimir mensagem de retorno na tela
-      responseCreateUser.textContent = retorno.description;
-      setInterval(() => {
-        responseCreateUser.textContent = ""
-      }, 2000)
+      if (Object.keys(retorno).length !== 0) {
+        responseCreateUser.textContent = "Usuário inserido com sucesso";
+        setInterval(() => {
+          responseCreateUser.textContent = null;
+        }, 2000)
+      } else {
+        responseCreateUser.textContent = "Não foi possível inserir o usuário";
+      }
     }
   };
   
   const zipInt = parseInt(zipCode.value);
   const numberInt = parseInt(numberHome.value);
   // Converting JSON data to string
-  var data = JSON.stringify({
+  const data = JSON.stringify({
     id: 0,
     name: nameUser.value,
     email: email.value,
