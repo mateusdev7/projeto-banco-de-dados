@@ -14,9 +14,12 @@ def insert():
     data = request.json
     data["id"] = OperationsUser.findLastUser("users") + 1
     user = Users(**data)
-    OperationsUser.insertOneUser(data, "users")
-    returnJson = json.dumps(user.__dict__, ensure_ascii=False).encode('utf8')
-    return returnJson
+    resultInsert = OperationsUser.insertOneUser(data, "users")
+    if (resultInsert):
+        returnJson = json.dumps(user.__dict__, ensure_ascii=False).encode('utf8')
+        return returnJson
+    else:
+        return []
 
 @app.route('/search', methods=['GET','POST'])
 @cross_origin(supports_credentials=True)

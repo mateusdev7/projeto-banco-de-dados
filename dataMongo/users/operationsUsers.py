@@ -8,8 +8,13 @@ mongo = MongoConnection()
 class OperationsUser():
     def insertOneUser(data: json, collection: str):
         mongo.connect()
-        mongo.mydb[collection].insert_one(data)
-        mongo.close()
+        resultSearchUser = OperationsUser.searchUserWithCpf(data["cpf"])
+        if (resultSearchUser == None):
+            print(OperationsUser.searchUserWithCpf(data["cpf"]))
+            mongo.mydb[collection].insert_one(data)
+            return True
+        else:
+            return False
     
     def searchUserWithCpf(cpf: str):
         mongo.connect()
@@ -23,7 +28,6 @@ class OperationsUser():
                 "cpf" : user["cpf"],
             }
             list.append(userObject)
-        mongo.close()
         if (list != []):
             return list[0]
         else:
