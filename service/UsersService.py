@@ -38,24 +38,28 @@ def delete():
     else:
         return []
 
-# @app.route('/update', methods=['GET','POST'])
-# @cross_origin(supports_credentials=True)
-# def update():
-#     data = json.loads(json.dumps(request.json))
-#     updateUser = Users(**data)
-#     response = UserUpdate.update(updateUser)
-#     returnJson = json.dumps(response.__dict__, ensure_ascii=False).encode('utf8')
-#     return returnJson
+@app.route('/update', methods=['GET', 'POST', 'UPDATE'])
+@cross_origin(supports_credentials=True)
+def update():
+    data = request.json
+    if (data != None):
+        user = Users(**data)
+        OperationsUser.updateUser(data["id"], data["name"], data["email"], data["descriptionAccess"], data["phone"], data["zipCode"], data["numberHome"], data["complement"])
+        returnJson = json.dumps(user.__dict__, ensure_ascii=False).encode('utf8')
+        return returnJson
+    else: 
+        return []
 
-
-# @app.route('/pic', methods=['GET','POST'])
-# @cross_origin(supports_credentials=True)
-# def pic():
-#     data = json.loads(json.dumps(request.json))
-#     picUser = Users(**data)
-#     response = UserPic.pic(picUser)
-#     returnJson = json.dumps(response, ensure_ascii=False).encode('utf8')
-#     return returnJson
+@app.route('/pic', methods=['GET','POST'])
+@cross_origin(supports_credentials=True)
+def pic():
+    data = request.json # ID para remover
+    responseDataID = OperationsUser.findOneUser(data["id"], "users")
+    print(responseDataID)
+    if (responseDataID != None):
+        return responseDataID
+    else:
+        return []
 
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port=5000, debug=False, threaded=True)

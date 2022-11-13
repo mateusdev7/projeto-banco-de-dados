@@ -1,16 +1,61 @@
 const id = document.getElementById("id");
-const name = document.getElementById("name");
+const nameField = document.getElementById("name");
 const email = document.getElementById("email");
 const descriptionAccess = document.getElementById("descriptionAccess");
 const phone = document.getElementById("phone");
 const zipCode = document.getElementById("zipCode");
 const numberHome = document.getElementById("numberHome");
 const complement = document.getElementById("complement");
+const inputs = document.querySelectorAll("input");
 
 const formPesquisarUsuario = document.querySelector(".form-pesquisar-usuario");
 const formAtualizarUsuario = document.querySelector(".form-atualizar-usuario");
 
 const responseUpdateUser = document.querySelector(".responseUpdateUser");
+const table = document.querySelector('table');
+
+function createUserInTable(id, name, email) {
+  const tr = document.createElement('tr');
+  const tdId = document.createElement('td');
+  tdId.textContent = id
+  const tdName = document.createElement('td');
+  tdName.textContent = name
+  const tdEmail = document.createElement('td');
+  tdEmail.textContent = email
+  tr.appendChild(tdId);
+  tr.appendChild(tdName)
+  tr.appendChild(tdEmail)
+  table.appendChild(tr)
+  return tr
+}
+
+function getDataUsers() {
+  let xhr = new XMLHttpRequest();
+  let url = "http://127.0.0.1:5000/search";
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      const myArr = JSON.parse(this.responseText);
+      if (myArr.length !== 0) {
+        myArr.forEach((item) => {
+          const str = item.name
+          const arr = str.split(" ");
+          for (let i = 0; i < arr.length; i++) {
+            arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+          }
+          const str2 = arr.join(" ");
+          createUserInTable(item.id, str2, (item.email).toLowerCase())
+        })
+      } else {
+        alert("Não possuem usuários cadastrados para serem atualizados")
+      }
+    }
+  };
+  xhr.open("GET", url, true);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.send();
+}
+getDataUsers();
 
 function picUser(e) {
   e.preventDefault();
@@ -23,8 +68,8 @@ function picUser(e) {
     email: "",
     descriptionAccess: "",
     phone: "",
-    zipCode: "",
-    numberHome: "",
+    zipCode: 0,
+    numberHome: 0,
     complement: "",
   });
 
@@ -34,16 +79,17 @@ function picUser(e) {
     if (xhr.readyState === 4 && xhr.status === 200) {
       const myArr = JSON.parse(this.responseText);
       if (myArr.length === 0) {
-        close();
+        alert("Dados não encontrados")
       } else {
         showDataUser(myArr);
-        name.disabled = false;
+        nameField.disabled = false;
         email.disabled = false;
         descriptionAccess.disabled = false;
         phone.disabled = false;
         zipCode.disabled = false;
         numberHome.disabled = false;
         complement.disabled = false;
+        id.disabled = true;
       }
     }
   };
@@ -51,27 +97,28 @@ function picUser(e) {
 }
 
 function showDataUser(myArr) {
-  id.value = myArr[0].id;
-  name.value = myArr[0].name;
-  email.value = myArr[0].email;
-  descriptionAccess.value = myArr[0].descriptionAccess;
-  phone.value = myArr[0].phone;
-  zipCode.value = myArr[0].zipCode;
-  numberHome.value = myArr[0].numberHome;
-  complement.value = myArr[0].complement;
+  id.value = myArr["id"];
+  nameField.value = myArr["name"];
+  email.value = myArr["email"];
+  descriptionAccess.value = myArr["descriptionAccess"];
+  phone.value = myArr["phone"];
+  zipCode.value = myArr["zipCode"];
+  numberHome.value = myArr["numberHome"];
+  complement.value = myArr["complement"];
 }
 
 formPesquisarUsuario.addEventListener("submit", picUser);
 
-let urlUpdate = "http://127.0.0.1:5000/update";
-function updateUser() {
+function updateUser(e) {
+  e.preventDefault();
+  let urlUpdate = "http://127.0.0.1:5000/update";
+  let xhrUpdate = new XMLHttpRequest();
   const idInt = parseInt(id.value);
   const numberInt = parseInt(numberHome.value);
   const zipInt = parseInt(zipCode.value);
-  let xhrUpdate = new XMLHttpRequest();
   const data = JSON.stringify({
     id: idInt,
-    name: name.value,
+    name: nameField.value,
     email: email.value,
     descriptionAccess: descriptionAccess.value,
     phone: phone.value,
@@ -82,17 +129,21 @@ function updateUser() {
 
   xhrUpdate.open("POST", urlUpdate, true);
   xhrUpdate.setRequestHeader("Content-Type", "application/json");
-  xhrUpdate.onreadystatechange = function (e) {
+  xhrUpdate.onreadystatechange = function () {
     if (xhrUpdate.readyState === 4 && xhrUpdate.status === 200) {
-      e.preventDefault();
-      const retorno = JSON.parse(this.responseText);
-      responseUpdateUser.textContent = retorno.description;
-      setInterval(() => {
+      const myArr = JSON.parse(this.responseText)
+      console.log(myArr);
+      responseUpdateUser.textContent = "Usuário atualizado com sucesso";
+      setTimeout(() => {
         responseUpdateUser.textContent = "";
       }, 2000);
+        location.reload(true); 
     }
   };
   xhrUpdate.send(data);
+  inputs.forEach((input) => {
+    input.value = "";
+  });
 };
 
 formAtualizarUsuario.addEventListener("submit", updateUser);

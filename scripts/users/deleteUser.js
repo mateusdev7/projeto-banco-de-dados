@@ -8,10 +8,10 @@ const formDeletarUsuario = document.querySelector('.form-deletar-usuario')
 confirmDelete.style.display = "none";
 cancelDelete.style.display = "none";
 
-function createInfoUsers(content) {
+function createInfoUsers(id) {
   const text = document.createElement('p');
   text.className = "data-result";
-  text.textContent = `ID: ${content}`;
+  text.textContent = `ID: ${id}`;
   formDeletarUsuario.appendChild(text);
 }
 
@@ -59,7 +59,6 @@ function deleteUser(e) {
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
       const retorno = JSON.parse(this.responseText);
-      console.log(retorno);
       if (retorno.length === 0) {
         alert("Usuário inexistente")
       } else {

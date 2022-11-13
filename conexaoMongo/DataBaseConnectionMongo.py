@@ -5,7 +5,7 @@ class MongoConnection:
     def connect(self):
         self.myclient = pymongo.MongoClient("mongodb://localhost:27017/")
         self.mydb = self.myclient["beautysalon"]
-        
+        self.mycol = self.mydb["users"]
     def close(self):
         self.myclient.close()
         

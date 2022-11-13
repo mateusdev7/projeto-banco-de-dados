@@ -58,18 +58,7 @@
     <div class="container-geral">
       <div class="form-container">
         <form class="form-pesquisar-usuario">
-          <h1
-            style="
-              color: green;
-              font-size: 1.5rem;
-              margin-bottom: 20px;
-              text-align: center;
-              margin-top: 20px;
-              grid-column: 1 / -1;
-            "
-          >
-            Atualizar Usuário
-          </h1>
+          <h1>Atualizar Usuário</h1>
           <div>
             <label for="id">ID</label>
             <input type="text" id="id" name="id" required />
@@ -151,8 +140,15 @@
         </form>
         <p
           class="responseUpdateUser"
-          style="color: blue; font-weight: bold;letter-spacing: 1px;grid-column: 1/-1;"></p>
+          style="color: blue; font-weight: bold;letter-spacing: 1px;grid-column: 1/-1; margin-top: 0.5rem"></p>
       </div>
+      <table style="width:100%">
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Email</th>
+        </tr>
+      </table>
     </div>
     <script src="../../scripts/users/updateUser.js"></script>
   </body>

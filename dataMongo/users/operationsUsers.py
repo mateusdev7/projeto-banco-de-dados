@@ -18,6 +18,7 @@ class OperationsUser():
             userObject = dict(
                 id = user["id"],
                 name = user["name"],
+                email = user["email"]
             )
             list.append(userObject)
         mongo.close()
@@ -60,4 +61,11 @@ class OperationsUser():
     def deleteUser(id: int, collection: str):
         mongo.connect()
         mongo.mydb[collection].delete_many({ "id": id })
+        mongo.close()
+    
+    def updateUser(id: int, name: str, email: str, descriptionAccess: str, phone: str, zipCode: int, numberHome: int, complement: str):
+        mongo.connect()
+        myQuery = { "id": id }
+        newValues = { "$set" : { "name": name, "email": email, "descriptionAccess": descriptionAccess, "phone": phone, "zipCode": zipCode, "numberHome": numberHome, "complement": complement }}
+        mongo.mycol.update_many(myQuery, newValues)
         mongo.close()
