@@ -4,11 +4,6 @@ import json
 from flask import Flask, request
 from flask_cors import CORS, cross_origin
 from dataMongo.users.operationsUsers import OperationsUser
-# from data.users.UsersInsert import UserInsert
-# from data.users.UsersUpdate import UserUpdate
-# from data.users.UsersDelete import UserDelete
-# from data.users.UsersSearch import UsersSearch
-# from data.users.UsersPic import UserPic
 from model.users.Users import Users
 app = Flask(__name__)
 CORS(app, support_credentials=True)
@@ -17,12 +12,31 @@ CORS(app, support_credentials=True)
 @cross_origin(supports_credentials=True)
 def insert():
     data = request.json
-    print(data["id"])
     data["id"] = OperationsUser.findLastUser("users") + 1
     user = Users(**data)
     OperationsUser.insertOneUser(data, "users")
     returnJson = json.dumps(user.__dict__, ensure_ascii=False).encode('utf8')
     return returnJson
+
+@app.route('/search', methods=['GET','POST'])
+@cross_origin(supports_credentials=True)
+def search():
+    response = OperationsUser.findAllUsers("users")
+    returnJson = json.dumps(response, ensure_ascii=False).encode('utf8')
+    return returnJson
+
+@app.route('/delete', methods=['GET','POST', 'DELETE'])
+@cross_origin(supports_credentials=True)
+def delete():
+    data = request.json # ID para remover
+    responseDataID = OperationsUser.findOneUser(data["id"], "users")
+    if (responseDataID != None):
+        user = Users(**responseDataID)
+        OperationsUser.deleteUser(data["id"], "users")
+        dataJsonForJavaScript = json.dumps(user.__dict__, ensure_ascii=False).encode('utf8')
+        return dataJsonForJavaScript
+    else:
+        return []
 
 # @app.route('/update', methods=['GET','POST'])
 # @cross_origin(supports_credentials=True)
@@ -33,14 +47,6 @@ def insert():
 #     returnJson = json.dumps(response.__dict__, ensure_ascii=False).encode('utf8')
 #     return returnJson
 
-# @app.route('/delete', methods=['GET','POST'])
-# @cross_origin(supports_credentials=True)
-# def delete():
-#     data = json.loads(json.dumps(request.json))
-#     deleteUser = Users(**data)
-#     response = UserDelete.delete(deleteUser)
-#     returnJson = json.dumps(response.__dict__, ensure_ascii=False).encode('utf8')
-#     return returnJson
 
 # @app.route('/pic', methods=['GET','POST'])
 # @cross_origin(supports_credentials=True)
@@ -48,13 +54,6 @@ def insert():
 #     data = json.loads(json.dumps(request.json))
 #     picUser = Users(**data)
 #     response = UserPic.pic(picUser)
-#     returnJson = json.dumps(response, ensure_ascii=False).encode('utf8')
-#     return returnJson
-
-# @app.route('/search', methods=['GET','POST'])
-# @cross_origin(supports_credentials=True)
-# def search():
-#     response = UsersSearch.search()
 #     returnJson = json.dumps(response, ensure_ascii=False).encode('utf8')
 #     return returnJson
 

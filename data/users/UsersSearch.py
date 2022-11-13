@@ -5,7 +5,7 @@ from ResponseModel import ResponseModel
 class UsersSearch:
   def search():
         dsn_tns = cx_Oracle.makedsn('localhost', '1521', 'xe')
-        connection = cx_Oracle.connect(user='SYSTEM',               password='BancoDados2021', dsn=dsn_tns)
+        connection = cx_Oracle.connect(user='SYSTEM', password='BancoDados2021', dsn=dsn_tns)
         cursor = connection.cursor() 
         sql = "SELECT * FROM users"
         try:

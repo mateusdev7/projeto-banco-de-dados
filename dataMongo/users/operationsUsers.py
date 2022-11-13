@@ -14,8 +14,12 @@ class OperationsUser():
     def findAllUsers(collection: str):
         mongo.connect()
         list = []
-        for x in mongo.mydb[collection].find():
-            list.append(x["name"])
+        for user in mongo.mydb[collection].find():
+            userObject = dict(
+                id = user["id"],
+                name = user["name"],
+            )
+            list.append(userObject)
         mongo.close()
         return list
     
@@ -29,9 +33,31 @@ class OperationsUser():
             lastUser = 0
         else:
             lastUser = list[-1]
+        mongo.close()
         return lastUser
     
-    def findAndDeleteUser(collection: str):
+    def findOneUser(id: int, collection: str):
         mongo.connect()
-        mongo.mydb[collection].delete_many({})
+        list = []
+        for user in mongo.mydb[collection].find({ "id": id }):
+            userObject = {
+                "id" : user["id"],
+                "name" : user["name"],
+                "email" : user["email"],
+                "descriptionAccess" : user["descriptionAccess"],
+                "phone" : user["phone"],
+                "zipCode" : user["zipCode"],
+                "numberHome" : user["numberHome"],
+                "complement" : user["complement"],
+            }
+            list.append(userObject)
+        mongo.close()
+        if (list != []):
+            return list[0]
+        else:
+            return None
+    
+    def deleteUser(id: int, collection: str):
+        mongo.connect()
+        mongo.mydb[collection].delete_many({ "id": id })
         mongo.close()

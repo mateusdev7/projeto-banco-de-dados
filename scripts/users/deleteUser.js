@@ -1,5 +1,4 @@
 const id = document.getElementById("id");
-const responseDeleteUser = document.querySelector(".responseDeleteUser");
 const inputs = document.querySelectorAll("input");
 const firstDelete = document.querySelector('.firstDelete');
 const confirmDelete = document.querySelector('.confirmDelete');
@@ -9,29 +8,36 @@ const formDeletarUsuario = document.querySelector('.form-deletar-usuario')
 confirmDelete.style.display = "none";
 cancelDelete.style.display = "none";
 
-function createText(content) {
-  const p = document.createElement('p');
-  p.className = "data-result";
-  p.innerText = `Id: ${content}`;
-  formDeletarUsuario.appendChild(p);
+function createInfoUsers(content) {
+  const text = document.createElement('p');
+  text.className = "data-result";
+  text.textContent = `ID: ${content}`;
+  formDeletarUsuario.appendChild(text);
 }
 
 function getDataUsers() {
   let xhr = new XMLHttpRequest();
   let url = "http://127.0.0.1:5000/search";
 
-  xhr.onreadystatechange = async function () {
+  xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
       const myArr = JSON.parse(this.responseText);
-      console.log(myArr)
-      myArr.forEach((item) => {
-        createText(`${item.id} - ${item.name}`)
-      })
+      if (myArr.length !== 0) {
+        myArr.forEach((item) => {
+          const str = item.name
+          const arr = str.split(" ");
+          for (let i = 0; i < arr.length; i++) {
+            arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+          }
+          const str2 = arr.join(" ");
+          createInfoUsers(`${item.id} - ${str2}`)
+        })
+      } else {
+        alert("Não possuem usuários cadastrados para serem deletados")
+      }
     }
   };
-  // open a connection
   xhr.open("GET", url, true);
-  // Set the request header i.e. which type of content you are sending
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.send();
 }
@@ -50,14 +56,15 @@ function deleteUser(e) {
   // Set the request header i.e. which type of content you are sending
   xhr.setRequestHeader("Content-Type", "application/json");
   const idInt = parseInt(id.value);
-
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
       const retorno = JSON.parse(this.responseText);
+      console.log(retorno);
       if (retorno.length === 0) {
-        responseDeleteUser.textContent = "Usuário inexistente"
+        alert("Usuário inexistente")
       } else {
-        responseDeleteUser.textContent = retorno.description;
+        alert("Usuário deletado com sucesso")
+        location.reload(true); 
       }
     }
   };
@@ -95,7 +102,6 @@ function hideButton(e) {
     cancelDelete.style.display = "none";
   }
 }
-
 
 firstDelete.addEventListener("click", showSecondButton)
 confirmDelete.addEventListener("click", deleteUser);
