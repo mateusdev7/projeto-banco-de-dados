@@ -44,7 +44,7 @@ def update():
     data = request.json
     if (data != None):
         user = Users(**data)
-        OperationsUser.updateUser(data["id"], data["name"], data["email"], data["descriptionAccess"], data["phone"], data["zipCode"], data["numberHome"], data["complement"])
+        OperationsUser.updateUser(data["id"], data["name"], data["email"], data["descriptionAccess"], data["cpf"])
         returnJson = json.dumps(user.__dict__, ensure_ascii=False).encode('utf8')
         return returnJson
     else: 

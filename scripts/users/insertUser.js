@@ -1,13 +1,59 @@
 const name = document.getElementById("nameUser");
 const email = document.getElementById("email");
 const descriptionAccess = document.getElementById("descriptionAccess");
-const phone = document.getElementById("phone");
-const zipCode = document.getElementById("zipCode");
-const numberHome = document.getElementById("numberHome");
-const complement = document.getElementById("complement");
+const cpf = document.getElementById("cpf");
 const form = document.querySelector(".form-inclusao-usuario");
 const responseCreateUser = document.querySelector(".responseCreateUser");
 const inputs = document.querySelectorAll('input');
+const table = document.querySelector('table');
+
+function createUserInTable(id, name, cpf) {
+  const tr = document.createElement('tr');
+  const tdId = document.createElement('td');
+  tdId.textContent = id
+  const tdName = document.createElement('td');
+  tdName.textContent = name
+  const tdCpf = document.createElement('td');
+  tdCpf.textContent = cpf
+  tr.appendChild(tdId);
+  tr.appendChild(tdName)
+  tr.appendChild(tdCpf)
+  table.appendChild(tr)
+  return tr
+}
+
+function getDataUsers() {
+  let xhr = new XMLHttpRequest();
+  let url = "http://127.0.0.1:5000/search";
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      const myArr = JSON.parse(this.responseText);
+      if (myArr.length !== 0) {
+        myArr.forEach((item) => {
+          const name = item.name
+          const arrName = name.split(" ");
+          for (let i = 0; i < arrName.length; i++) {
+            arrName[i] = arrName[i].charAt(0).toUpperCase() + arrName[i].slice(1);
+          }
+          let nameFormat = arrName.join(" ");
+          let cpf = item.cpf;
+          cpf = cpf.replace(/[^\d]/g, "");
+          cpf = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+          createUserInTable(item.id, nameFormat, cpf)
+        })
+      } else {
+        alert("Não possuem usuários cadastrados para serem atualizados")
+      }
+    }
+  };
+  xhr.open("GET", url, true);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.send();
+}
+getDataUsers();
+
+
 
 function sendJSON(e) {
   e.preventDefault();
@@ -27,8 +73,9 @@ function sendJSON(e) {
       const retorno = JSON.parse(this.responseText);
       if (Object.keys(retorno).length !== 0) {
         responseCreateUser.textContent = "Usuário inserido com sucesso";
-        setInterval(() => {
+        setTimeout(() => {
           responseCreateUser.textContent = null;
+          location.reload(true);
         }, 2000)
       } else {
         responseCreateUser.textContent = "Não foi possível inserir o usuário";
@@ -36,18 +83,13 @@ function sendJSON(e) {
     }
   };
   
-  const zipInt = parseInt(zipCode.value);
-  const numberInt = parseInt(numberHome.value);
   // Converting JSON data to string
   const data = JSON.stringify({
     id: 0,
     name: nameUser.value,
     email: email.value,
     descriptionAccess: descriptionAccess.value,
-    phone: phone.value,
-    zipCode: zipInt,
-    numberHome: numberInt,
-    complement: complement.value
+    cpf: cpf.value,
   });
 
   // Sending data with the request

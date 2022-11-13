@@ -50,16 +50,41 @@ input,
 label {
   display: block;
 }
+
+table, th, td {
+  border:1px solid black;
+  text-align: center;
+}
+table {
+  margin-top: 50px;
+  align-self: start;
+}
+
 .container-geral {
   display: grid;
-  gap: 60px;
+  grid-template-columns: repeat(2, 1fr);
   justify-content: center;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  gap: 20px;
 }
+
 .form-inclusao-usuario {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
+
+.form-inclusao-usuario h1 {
+  color: green;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+  margin-top: 20px;
+  grid-column: 1 / -1;
+}
+
 .form-container {
   width: 640px;
   margin-left: 10px;

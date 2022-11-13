@@ -74,10 +74,7 @@ function deleteUser(e) {
     name: "",
     email: "",
     descriptionAccess: "",
-    phone: "",
-    zipCode: 0,
-    numberHome: 0,
-    complement: "",
+    cpf: "",
   });
   // Sending data with the request
   xhr.send(data);

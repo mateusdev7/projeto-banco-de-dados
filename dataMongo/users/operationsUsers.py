@@ -11,6 +11,24 @@ class OperationsUser():
         mongo.mydb[collection].insert_one(data)
         mongo.close()
     
+    def searchUserWithCpf(cpf: str):
+        mongo.connect()
+        list = []
+        for user in mongo.mycol.find({ "cpf": cpf }):
+            userObject = {
+                "id" : user["id"],
+                "name" : user["name"],
+                "email" : user["email"],
+                "descriptionAccess" : user["descriptionAccess"],
+                "cpf" : user["cpf"],
+            }
+            list.append(userObject)
+        mongo.close()
+        if (list != []):
+            return list[0]
+        else:
+            return None
+    
     def findAllUsers(collection: str):
         mongo.connect()
         list = []
@@ -18,7 +36,8 @@ class OperationsUser():
             userObject = dict(
                 id = user["id"],
                 name = user["name"],
-                email = user["email"]
+                email = user["email"],
+                cpf = user["cpf"]
             )
             list.append(userObject)
         mongo.close()
@@ -46,10 +65,7 @@ class OperationsUser():
                 "name" : user["name"],
                 "email" : user["email"],
                 "descriptionAccess" : user["descriptionAccess"],
-                "phone" : user["phone"],
-                "zipCode" : user["zipCode"],
-                "numberHome" : user["numberHome"],
-                "complement" : user["complement"],
+                "cpf" : user["cpf"],
             }
             list.append(userObject)
         mongo.close()
@@ -63,9 +79,9 @@ class OperationsUser():
         mongo.mydb[collection].delete_many({ "id": id })
         mongo.close()
     
-    def updateUser(id: int, name: str, email: str, descriptionAccess: str, phone: str, zipCode: int, numberHome: int, complement: str):
+    def updateUser(id: int, name: str, email: str, descriptionAccess: str, cpf: str):
         mongo.connect()
         myQuery = { "id": id }
-        newValues = { "$set" : { "name": name, "email": email, "descriptionAccess": descriptionAccess, "phone": phone, "zipCode": zipCode, "numberHome": numberHome, "complement": complement }}
+        newValues = { "$set" : { "name": name, "email": email, "descriptionAccess": descriptionAccess, "cpf": cpf}}
         mongo.mycol.update_many(myQuery, newValues)
         mongo.close()

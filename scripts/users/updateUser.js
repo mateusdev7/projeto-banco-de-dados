@@ -2,10 +2,7 @@ const id = document.getElementById("id");
 const nameField = document.getElementById("name");
 const email = document.getElementById("email");
 const descriptionAccess = document.getElementById("descriptionAccess");
-const phone = document.getElementById("phone");
-const zipCode = document.getElementById("zipCode");
-const numberHome = document.getElementById("numberHome");
-const complement = document.getElementById("complement");
+const cpf = document.getElementById("cpf");
 const inputs = document.querySelectorAll("input");
 
 const formPesquisarUsuario = document.querySelector(".form-pesquisar-usuario");
@@ -67,10 +64,7 @@ function picUser(e) {
     name: "",
     email: "",
     descriptionAccess: "",
-    phone: "",
-    zipCode: 0,
-    numberHome: 0,
-    complement: "",
+    cpf: "",
   });
 
   xhr.open("POST", urlPic, true);
@@ -85,10 +79,7 @@ function picUser(e) {
         nameField.disabled = false;
         email.disabled = false;
         descriptionAccess.disabled = false;
-        phone.disabled = false;
-        zipCode.disabled = false;
-        numberHome.disabled = false;
-        complement.disabled = false;
+        cpf.disabled = false;
         id.disabled = true;
       }
     }
@@ -101,10 +92,7 @@ function showDataUser(myArr) {
   nameField.value = myArr["name"];
   email.value = myArr["email"];
   descriptionAccess.value = myArr["descriptionAccess"];
-  phone.value = myArr["phone"];
-  zipCode.value = myArr["zipCode"];
-  numberHome.value = myArr["numberHome"];
-  complement.value = myArr["complement"];
+  cpf.value = myArr["cpf"];
 }
 
 formPesquisarUsuario.addEventListener("submit", picUser);
@@ -114,17 +102,12 @@ function updateUser(e) {
   let urlUpdate = "http://127.0.0.1:5000/update";
   let xhrUpdate = new XMLHttpRequest();
   const idInt = parseInt(id.value);
-  const numberInt = parseInt(numberHome.value);
-  const zipInt = parseInt(zipCode.value);
   const data = JSON.stringify({
     id: idInt,
     name: nameField.value,
     email: email.value,
     descriptionAccess: descriptionAccess.value,
-    phone: phone.value,
-    zipCode: zipInt,
-    numberHome: numberInt,
-    complement: complement.value,
+    cpf: cpf.value,
   });
 
   xhrUpdate.open("POST", urlUpdate, true);
@@ -132,7 +115,6 @@ function updateUser(e) {
   xhrUpdate.onreadystatechange = function () {
     if (xhrUpdate.readyState === 4 && xhrUpdate.status === 200) {
       const myArr = JSON.parse(this.responseText)
-      console.log(myArr);
       responseUpdateUser.textContent = "Usuário atualizado com sucesso";
       setTimeout(() => {
         responseUpdateUser.textContent = "";
