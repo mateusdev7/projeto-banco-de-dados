@@ -57,7 +57,6 @@ label {
 }
 .form-inclusao-profissao {
   display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
 .form-container {
@@ -71,7 +70,7 @@ input {
   border: 2px solid #ccc;
   padding: 0.5rem;
   border-radius: 0.5rem;
-  box-sizin: border-box;
+  box-sizing: border-box;
   width: 100%;
   grid-column: 1 / -1;
 }
@@ -86,7 +85,7 @@ button {
   border-radius: 0.5rem;
   background: #cacaca;
   grid-column: 1 / -1;
-  box-sizin: border-box;
+  box-sizing: border-box;
 }
 button:hover {
   background: #000000;

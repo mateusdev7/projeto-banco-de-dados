@@ -12,9 +12,9 @@ CORS(app, support_credentials=True)
 @cross_origin(supports_credentials=True)
 def insert():
     data = request.json
-    data["id"] = OperationsUser.findLastUser("users") + 1
+    data["id"] = OperationsUser.findLastUser() + 1
     user = Users(**data)
-    resultInsert = OperationsUser.insertOneUser(data, "users")
+    resultInsert = OperationsUser.insertOneUser(data)
     if (resultInsert):
         returnJson = json.dumps(user.__dict__, ensure_ascii=False).encode('utf8')
         return returnJson
@@ -24,7 +24,7 @@ def insert():
 @app.route('/search', methods=['GET','POST'])
 @cross_origin(supports_credentials=True)
 def search():
-    response = OperationsUser.findAllUsers("users")
+    response = OperationsUser.findAllUsers()
     returnJson = json.dumps(response, ensure_ascii=False).encode('utf8')
     return returnJson
 
@@ -32,10 +32,10 @@ def search():
 @cross_origin(supports_credentials=True)
 def delete():
     data = request.json # ID para remover
-    responseDataID = OperationsUser.findOneUser(data["id"], "users")
+    responseDataID = OperationsUser.findOneUser(data["id"])
     if (responseDataID != None):
         user = Users(**responseDataID)
-        OperationsUser.deleteUser(data["id"], "users")
+        OperationsUser.deleteUser(data["id"])
         dataJsonForJavaScript = json.dumps(user.__dict__, ensure_ascii=False).encode('utf8')
         return dataJsonForJavaScript
     else:
@@ -57,7 +57,7 @@ def update():
 @cross_origin(supports_credentials=True)
 def pic():
     data = request.json # ID para remover
-    responseDataID = OperationsUser.findOneUser(data["id"], "users")
+    responseDataID = OperationsUser.findOneUser(data["id"])
     print(responseDataID)
     if (responseDataID != None):
         return responseDataID

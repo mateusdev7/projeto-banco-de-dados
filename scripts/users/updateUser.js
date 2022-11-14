@@ -115,11 +115,15 @@ function updateUser(e) {
   xhrUpdate.onreadystatechange = function () {
     if (xhrUpdate.readyState === 4 && xhrUpdate.status === 200) {
       const myArr = JSON.parse(this.responseText)
-      responseUpdateUser.textContent = "Usuário atualizado com sucesso";
-      setTimeout(() => {
-        responseUpdateUser.textContent = "";
-      }, 2000);
-        location.reload(true); 
+      if(myArr.length > 0) {
+        responseUpdateUser.textContent = "Usuário atualizado com sucesso";
+        setTimeout(() => {
+          responseUpdateUser.textContent = "";
+          location.reload(true); 
+        }, 2000);
+      } else {
+        responseUpdateUser.textContent = "Não foi possivel alterar o usuário"
+      }
     }
   };
   xhrUpdate.send(data);

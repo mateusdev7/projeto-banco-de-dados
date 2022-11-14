@@ -21,16 +21,21 @@ function sendJSON(e) {
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
       const retorno = JSON.parse(this.responseText);
-      responseCreateProfession.textContent = retorno.description;
-      setInterval(() => {
-        responseCreateProfession.textContent = ""
-      }, 2000)
+      if (retorno.length !== 0) {
+        responseCreateProfession.textContent = "Profissão criada com sucesso!";
+        setTimeout(() => {
+          responseCreateProfession.textContent = ""
+          location.reload();
+        }, 2000)
+      } else {
+        responseCreateProfession.textContent = "Não foi possível inserir essa profissão";
+      }
     }
   };
 
   var data = JSON.stringify({
     id: 0,
-    description: description.value,
+    description: (description.value).toLowerCase(),
   });
 
   xhr.send(data);

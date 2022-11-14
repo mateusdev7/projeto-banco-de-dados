@@ -6,12 +6,11 @@ sys.path.append('C:/Apache24/htdocs/projeto-banco-de-dados/projeto-banco-de-dado
 mongo = MongoConnection()
 
 class OperationsUser():
-    def insertOneUser(data: json, collection: str):
+    def insertOneUser(data: json):
         mongo.connect()
         resultSearchUser = OperationsUser.searchUserWithCpf(data["cpf"])
         if (resultSearchUser == None):
-            print(OperationsUser.searchUserWithCpf(data["cpf"]))
-            mongo.mydb[collection].insert_one(data)
+            mongo.collectionUsers.insert_one(data)
             return True
         else:
             return False
@@ -19,7 +18,7 @@ class OperationsUser():
     def searchUserWithCpf(cpf: str):
         mongo.connect()
         list = []
-        for user in mongo.mycol.find({ "cpf": cpf }):
+        for user in mongo.collectionUsers.find({ "cpf": cpf }):
             userObject = {
                 "id" : user["id"],
                 "name" : user["name"],
@@ -33,10 +32,10 @@ class OperationsUser():
         else:
             return None
     
-    def findAllUsers(collection: str):
+    def findAllUsers():
         mongo.connect()
         list = []
-        for user in mongo.mydb[collection].find():
+        for user in mongo.collectionUsers.find():
             userObject = dict(
                 id = user["id"],
                 name = user["name"],
@@ -47,10 +46,10 @@ class OperationsUser():
         mongo.close()
         return list
     
-    def findLastUser(collection: str):
+    def findLastUser():
         mongo.connect()
         list = []
-        for x in mongo.mydb[collection].find():
+        for x in mongo.collectionUsers.find():
             list.append(x["id"])
         mongo.close()
         if (list == []):
@@ -60,10 +59,10 @@ class OperationsUser():
         mongo.close()
         return lastUser
     
-    def findOneUser(id: int, collection: str):
+    def findOneUser(id: int):
         mongo.connect()
         list = []
-        for user in mongo.mydb[collection].find({ "id": id }):
+        for user in mongo.collectionUsers.find({ "id": id }):
             userObject = {
                 "id" : user["id"],
                 "name" : user["name"],
@@ -78,14 +77,14 @@ class OperationsUser():
         else:
             return None
     
-    def deleteUser(id: int, collection: str):
+    def deleteUser(id: int):
         mongo.connect()
-        mongo.mydb[collection].delete_many({ "id": id })
+        mongo.collectionUsers.delete_many({ "id": id })
         mongo.close()
     
     def updateUser(id: int, name: str, email: str, descriptionAccess: str, cpf: str):
         mongo.connect()
         myQuery = { "id": id }
         newValues = { "$set" : { "name": name, "email": email, "descriptionAccess": descriptionAccess, "cpf": cpf}}
-        mongo.mycol.update_many(myQuery, newValues)
+        mongo.collectionUsers.update_many(myQuery, newValues)
         mongo.close()
