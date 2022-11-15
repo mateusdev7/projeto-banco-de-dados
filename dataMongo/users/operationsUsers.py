@@ -58,7 +58,24 @@ class OperationsUser():
             lastUser = list[-1]
         mongo.close()
         return lastUser
-    
+        
+    def findOneUserById(id: int):
+        mongo.connect()
+        list = []
+        for user in mongo.collectionUsers.find({ "id": id }):
+            userObject = {
+                "id" : user["id"],
+                "name" : user["name"],
+                "email" : user["email"],
+                "descriptionAccess" : user["descriptionAccess"],
+                "cpf" : user["cpf"],
+            }
+            list.append(userObject)
+        if (list != []):
+            return list[0]
+        else:
+            return None
+        
     def deleteUser(cpf: str):
         mongo.connect()
         mongo.collectionUsers.delete_many({ "cpf": cpf })

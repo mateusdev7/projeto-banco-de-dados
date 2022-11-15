@@ -41,26 +41,27 @@ def delete():
     else:
         return []
     
-# @app.route('/update', methods=['GET','POST'])
-# @cross_origin(supports_credentials=True)
-# def update():
-#     data = json.loads(json.dumps(request.json))
-#     updateProfession = Profession(**data)
-#     response = ProfessionUpdate.update(updateProfession)
-#     returnJson = json.dumps(response.__dict__, ensure_ascii=False).encode('utf8')
-#     return returnJson
-
-
-# @app.route('/pic', methods=['GET','POST'])
-# @cross_origin(supports_credentials=True)
-# def pic():
-#     data = json.loads(json.dumps(request.json))
-#     picProfession = Profession(**data)
-#     response = ProfessionPic.pic(picProfession)
-#     returnJson = json.dumps(response, ensure_ascii=False).encode('utf8')
-#     return returnJson
-
-
+@app.route('/update', methods=['GET','POST', 'UPDATE'])
+@cross_origin(supports_credentials=True)
+def update():
+    data = request.json
+    if (data != None):
+        profession = Profession(**data)
+        OperationsProfession.updateProfession(data["id"], data["description"])
+        dataJsonForJavaScript = json.dumps(profession.__dict__, ensure_ascii=False).encode('utf8')
+        return dataJsonForJavaScript
+    else:
+        return []
+    
+@app.route('/pic', methods=['GET','POST'])
+@cross_origin(supports_credentials=True)
+def pic():
+    data = request.json # ID para atualizar
+    responseDataID = OperationsProfession.findOneProfessionById(data["id"])
+    if (responseDataID != None):
+        return responseDataID
+    else:
+        return []
 
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port=5001, debug=False, threaded=True)

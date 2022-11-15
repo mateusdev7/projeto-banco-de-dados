@@ -15,6 +15,20 @@ class OperationsProfession():
         else:
             return False
     
+    def findOneProfession(description: str):
+        mongo.connect()
+        list = []
+        for prof in mongo.collectionProfession.find({ "description": description.lower() }):
+            professionObject = {
+                "id" : prof["id"],
+                "description" : prof["description"],
+            }
+            list.append(professionObject)
+        if (list != []):
+            return list[0]
+        else:
+            return None
+    
     def findAllProfessions():
         mongo.connect()
         list = []
@@ -39,20 +53,6 @@ class OperationsProfession():
             lastProfession = list[-1]
         return lastProfession
     
-    def findOneProfession(description: str):
-        mongo.connect()
-        list = []
-        for prof in mongo.collectionProfession.find({ "description": description.lower() }):
-            professionObject = {
-                "id" : prof["id"],
-                "description" : prof["description"],
-            }
-            list.append(professionObject)
-        if (list != []):
-            return list[0]
-        else:
-            return None
-    
     def findOneProfessionById(id: int):
         mongo.connect()
         list = []
@@ -72,9 +72,9 @@ class OperationsProfession():
         mongo.collectionProfession.delete_one({ "id": id })
         mongo.close()
     
-    # def updateUser(id: int, name: str, email: str, descriptionAccess: str, cpf: str):
-    #     mongo.connect()
-    #     myQuery = { "id": id }
-    #     newValues = { "$set" : { "name": name, "email": email, "descriptionAccess": descriptionAccess, "cpf": cpf}}
-    #     mongo.collectionUsers.update_many(myQuery, newValues)
-    #     mongo.close()
+    def updateProfession(id: int, description: str):
+        mongo.connect()
+        myQuery = { "id": id }
+        newValues = { "$set" : { "description": description}}
+        mongo.collectionProfession.update_many(myQuery, newValues)
+        mongo.close()

@@ -56,9 +56,8 @@ def update():
 @app.route('/pic', methods=['GET','POST'])
 @cross_origin(supports_credentials=True)
 def pic():
-    data = request.json # ID para remover
-    responseDataID = OperationsUser.findOneUser(data["id"])
-    print(responseDataID)
+    data = request.json # ID para atualizar
+    responseDataID = OperationsUser.findOneUserById(data["id"])
     if (responseDataID != None):
         return responseDataID
     else:

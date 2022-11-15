@@ -50,36 +50,12 @@ input,
 label {
   display: block;
 }
-.container-geral {
-  display: grid;
-  gap: 60px;
-  justify-content: center;
-}
-.form-pesquisar-profissao, .form-atualizar-profissao {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
 
-.form-pesquisar-profissao div {
-  grid-column: 1 / -1;
-}
-
-.form-atualizar-profissao {
-  margin-top: 20px;
-}
-
-.form-container {
-  width: 640px;
-  padding: 40px;
-  box-shadow: 0px 0px 10px #b4b5bd;
-  margin-top: 50px;
-}
 input {
   border: 2px solid #ccc;
   padding: 0.5rem;
   border-radius: 0.5rem;
-  box-sizin: border-box;
+  box-sizing: border-box;
   width: 100%;
 }
 label {
@@ -93,7 +69,7 @@ button {
   border-radius: 0.5rem;
   background: #cacaca;
   grid-column: 1 / -1;
-  box-sizin: border-box;
+  box-sizing: border-box;
 }
 button:hover {
   background: #000000;
@@ -101,6 +77,54 @@ button:hover {
   color: #ffffff;
   cursor: pointer;
 }
+
+table, th, td {
+  border:1px solid black;
+  text-align: center;
+}
+table {
+  margin-top: 50px;
+  align-self: start;
+}
+
+.container-geral {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: center;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  gap: 20px;
+}
+.form-pesquisar-profissao, 
+.form-atualizar-profissao {
+  display: grid;
+  gap: 12px;
+}
+
+.form-pesquisar-profissao h1 {
+  color: green;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.form-pesquisar-profissao div {
+  grid-column: 1 / -1;
+}
+
+.form-atualizar-profissao {
+  margin-top: 20px;
+}
+
+.form-container {
+  width: 550px;
+  padding: 40px;
+  box-shadow: 0px 0px 10px #b4b5bd;
+  margin-top: 50px;
+}
+
 .email-delet {
   grid-column: 1 / -1;
 }
