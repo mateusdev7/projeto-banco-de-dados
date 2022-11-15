@@ -21,6 +21,26 @@ def insert():
     else:
         return []
 
+@app.route('/search', methods=['GET','POST'])
+@cross_origin(supports_credentials=True)
+def search():
+    response = OperationsProfession.findAllProfessions()
+    returnJson = json.dumps(response, ensure_ascii=False).encode('utf8')
+    return returnJson
+
+@app.route('/delete', methods=['GET', 'POST', 'DELETE'])
+@cross_origin(supports_credentials=True)
+def delete():
+    data = request.json
+    responseDataID = OperationsProfession.findOneProfessionById(data["id"])
+    if (responseDataID != None):
+        profession = Profession(**responseDataID)
+        OperationsProfession.deleteProfession(data["id"])
+        dataJsonForJavaScript = json.dumps(profession.__dict__, ensure_ascii=False).encode('utf8')
+        return dataJsonForJavaScript
+    else:
+        return []
+    
 # @app.route('/update', methods=['GET','POST'])
 # @cross_origin(supports_credentials=True)
 # def update():
@@ -30,14 +50,6 @@ def insert():
 #     returnJson = json.dumps(response.__dict__, ensure_ascii=False).encode('utf8')
 #     return returnJson
 
-# @app.route('/delete', methods=['GET','POST'])
-# @cross_origin(supports_credentials=True)
-# def delete():
-#     data = json.loads(json.dumps(request.json))
-#     deleteProfession = Profession(**data)
-#     response = ProfessionDelete.delete(deleteProfession)
-#     returnJson = json.dumps(response.__dict__, ensure_ascii=False).encode('utf8')
-#     return returnJson
 
 # @app.route('/pic', methods=['GET','POST'])
 # @cross_origin(supports_credentials=True)
@@ -48,12 +60,7 @@ def insert():
 #     returnJson = json.dumps(response, ensure_ascii=False).encode('utf8')
 #     return returnJson
 
-# @app.route('/search', methods=['GET','POST'])
-# @cross_origin(supports_credentials=True)
-# def search():
-#     response = ProfessionSearch.search()
-#     returnJson = json.dumps(response, ensure_ascii=False).encode('utf8')
-#     return returnJson
+
 
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port=5001, debug=False, threaded=True)

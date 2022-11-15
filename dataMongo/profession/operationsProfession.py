@@ -39,13 +39,13 @@ class OperationsProfession():
             lastProfession = list[-1]
         return lastProfession
     
-    def findOneProfession(profissao: str):
+    def findOneProfession(description: str):
         mongo.connect()
         list = []
-        for prof in mongo.collectionProfession.find({ "description": profissao }):
+        for prof in mongo.collectionProfession.find({ "description": description.lower() }):
             professionObject = {
                 "id" : prof["id"],
-                "description" : prof["description".toLowerCase()],
+                "description" : prof["description"],
             }
             list.append(professionObject)
         if (list != []):
@@ -53,10 +53,24 @@ class OperationsProfession():
         else:
             return None
     
-    # def deleteUser(id: int):
-    #     mongo.connect()
-    #     mongo.collectionUsers.delete_many({ "id": id })
-    #     mongo.close()
+    def findOneProfessionById(id: int):
+        mongo.connect()
+        list = []
+        for prof in mongo.collectionProfession.find({ "id": id }):
+            professionObject = {
+                "id" : prof["id"],
+                "description" : prof["description"],
+            }
+            list.append(professionObject)
+        if (list != []):
+            return list[0]
+        else:
+            return None
+    
+    def deleteProfession(id: int):
+        mongo.connect()
+        mongo.collectionProfession.delete_one({ "id": id })
+        mongo.close()
     
     # def updateUser(id: int, name: str, email: str, descriptionAccess: str, cpf: str):
     #     mongo.connect()

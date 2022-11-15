@@ -1,18 +1,28 @@
-const id = document.getElementById("id");
+const cpf = document.getElementById("cpf");
 const inputs = document.querySelectorAll("input");
 const firstDelete = document.querySelector('.firstDelete');
 const confirmDelete = document.querySelector('.confirmDelete');
 const cancelDelete = document.querySelector('.cancelDelete');
 const dataResult = document.querySelector('[data-result]');
 const formDeletarUsuario = document.querySelector('.form-deletar-usuario')
+const table = document.querySelector('table');
+
 confirmDelete.style.display = "none";
 cancelDelete.style.display = "none";
 
-function createInfoUsers(id) {
-  const text = document.createElement('p');
-  text.className = "data-result";
-  text.textContent = `ID: ${id}`;
-  formDeletarUsuario.appendChild(text);
+function createUserInTable(id, name, cpf) {
+  const tr = document.createElement('tr');
+  const tdId = document.createElement('td');
+  tdId.textContent = id
+  const tdName = document.createElement('td');
+  tdName.textContent = name
+  const tdCpf = document.createElement('td');
+  tdCpf.textContent = cpf
+  tr.appendChild(tdId);
+  tr.appendChild(tdName)
+  tr.appendChild(tdCpf)
+  table.appendChild(tr)
+  return tr
 }
 
 function getDataUsers() {
@@ -24,16 +34,19 @@ function getDataUsers() {
       const myArr = JSON.parse(this.responseText);
       if (myArr.length !== 0) {
         myArr.forEach((item) => {
-          const str = item.name
-          const arr = str.split(" ");
-          for (let i = 0; i < arr.length; i++) {
-            arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+          const name = item.name
+          const arrName = name.split(" ");
+          for (let i = 0; i < arrName.length; i++) {
+            arrName[i] = arrName[i].charAt(0).toUpperCase() + arrName[i].slice(1);
           }
-          const str2 = arr.join(" ");
-          createInfoUsers(`${item.id} - ${str2}`)
+          let nameFormat = arrName.join(" ");
+          let cpf = item.cpf;
+          cpf = cpf.replace(/[^\d]/g, "");
+          cpf = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+          createUserInTable(item.id, nameFormat, cpf)
         })
       } else {
-        alert("Não possuem usuários cadastrados para serem deletados")
+        alert("Não possuem usuários cadastrados")
       }
     }
   };
@@ -55,12 +68,12 @@ function deleteUser(e) {
 
   // Set the request header i.e. which type of content you are sending
   xhr.setRequestHeader("Content-Type", "application/json");
-  const idInt = parseInt(id.value);
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
       const retorno = JSON.parse(this.responseText);
       if (retorno.length === 0) {
         alert("Usuário inexistente")
+        location.reload(true); 
       } else {
         alert("Usuário deletado com sucesso")
         location.reload(true); 
@@ -70,11 +83,11 @@ function deleteUser(e) {
 
   // Converting JSON data to string
   const data = JSON.stringify({
-    id: idInt,
+    id: 0,
     name: "",
     email: "",
     descriptionAccess: "",
-    cpf: "",
+    cpf: cpf.value,
   });
   // Sending data with the request
   xhr.send(data);
@@ -85,7 +98,7 @@ function deleteUser(e) {
 
 function showSecondButton(e) {
   e.preventDefault();
-  if (id.value !== "") {
+  if (cpf.value !== "") {
     confirmDelete.style.display = "block";
     cancelDelete.style.display = "block";
   }

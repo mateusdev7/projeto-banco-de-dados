@@ -43,7 +43,7 @@ function getDataUsers() {
           createUserInTable(item.id, nameFormat, cpf)
         })
       } else {
-        alert("Não possuem usuários cadastrados para serem atualizados")
+        alert("Não possuem usuários cadastrados")
       }
     }
   };

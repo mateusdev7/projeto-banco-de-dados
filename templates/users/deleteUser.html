@@ -58,32 +58,28 @@
     <div class="container-geral">
       <div class="form-container">
         <form class="form-deletar-usuario">
-          <h1
-            style="
-              color: green;
-              font-size: 1.5rem;
-              margin-bottom: 20px;
-              text-align: center;
-            "
-          >
-            Deletar Usuário
-          </h1>
+          <h1>Deletar Usuário</h1>
           <div class="campo-deletar">
-            <label for="id">Digite o ID do usuário</label>
+            <label for="cpf">Digite o CPF do usuário</label>
             <input
-              type="number"
-              id="id"
-              name="id"
-              placeholder="ID"
+              type="text"
+              id="cpf"
+              name="cpf"
+              placeholder="000.000.000-00"
             />
           </div>
           <button class="firstDelete">Deletar Usuário</button>
           <button class="confirmDelete">Confirmar</button>
           <button class="cancelDelete">Cancelar</button>
-          <h4>Usuários disponíveis</h4>
         </form>
-        <p data-result></p>
       </div>
+      <table style="width:100%">
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>CPF</th>
+        </tr>
+      </table>
     </div>
     <script src="../../scripts/users/deleteUser.js"></script>
   </body>

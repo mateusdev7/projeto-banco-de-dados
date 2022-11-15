@@ -46,29 +46,19 @@
     <div class="container-geral">
       <div class="form-container">
         <form class="form-deletar-profissao">
-          <h1
-            style="
-              color: green;
-              font-size: 1.5rem;
-              margin-bottom: 20px;
-              text-align: center;
-            "
-          >
-            Deletar Profissão
-          </h1>
+          <h1>Deletar Profissão</h1>
           <div class="campo-deletar">
-            <label for="id">Digite o número da profissão</label>
+            <label for="id">Digite o ID da profissão</label>
             <input
               type="number"
               id="id"
               name="id"
-              placeholder="Número da profissão"
+              placeholder="ID"
             />
           </div>
           <button class="firstDelete">Deletar Profissão</button>
           <button class="confirmDelete">Confirmar</button>
           <button class="cancelDelete">Cancelar</button>
-          <h4>Profissões disponíveis</h4>
           <p
             class="responseDeleteProfession"
             style="
@@ -79,8 +69,13 @@
             "
           ></p>
         </form>
-        <p data-result></p>
       </div>
+      <table style="width:100%">
+        <tr>
+          <th>ID</th>
+          <th>Profissao</th>
+        </tr>
+      </table>
     </div>
     <script src="../../scripts/profession/deleteProfession.js"></script>
   </body>

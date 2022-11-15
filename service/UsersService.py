@@ -28,14 +28,14 @@ def search():
     returnJson = json.dumps(response, ensure_ascii=False).encode('utf8')
     return returnJson
 
-@app.route('/delete', methods=['GET','POST', 'DELETE'])
+@app.route('/delete', methods=['GET', 'POST', 'DELETE'])
 @cross_origin(supports_credentials=True)
 def delete():
-    data = request.json # ID para remover
-    responseDataID = OperationsUser.findOneUser(data["id"])
-    if (responseDataID != None):
-        user = Users(**responseDataID)
-        OperationsUser.deleteUser(data["id"])
+    data = request.json # CPF para remover
+    responseDataCPF = OperationsUser.searchUserWithCpf(data["cpf"])
+    if (responseDataCPF != None):
+        user = Users(**responseDataCPF)
+        OperationsUser.deleteUser(data["cpf"])
         dataJsonForJavaScript = json.dumps(user.__dict__, ensure_ascii=False).encode('utf8')
         return dataJsonForJavaScript
     else:
