@@ -52,7 +52,7 @@ def update():
         return dataJsonForJavaScript
     else:
         return []
-    
+        
 @app.route('/pic', methods=['GET','POST'])
 @cross_origin(supports_credentials=True)
 def pic():

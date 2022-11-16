@@ -87,7 +87,7 @@ label {
   gap: 8px;
 }
 .relatorio-button::before {
-  content: url("./assets/report_icon.svg");
+  content: url("../../assets/report_icon.svg");
   display: inline-block;
 }
 .inserir-button {
@@ -96,7 +96,7 @@ label {
   gap: 8px;
 }
 .inserir-button::before {
-  content: url("./assets/insert_icon.svg");
+  content: url("../../assets/insert_icon.svg");
   display: inline-block;
 }
 .remove-button {
@@ -105,7 +105,7 @@ label {
   gap: 8px;
 }
 .remove-button::before {
-  content: url("./assets/remove_icon.svg");
+  content: url("../../assets/remove_icon.svg");
   display: inline-block;
 }
 .atualizar-button {
@@ -114,7 +114,7 @@ label {
   gap: 8px;
 }
 .atualizar-button::before {
-  content: url("./assets/update_icon.svg");
+  content: url("../../assets/update_icon.svg");
   display: inline-block;
 }
 

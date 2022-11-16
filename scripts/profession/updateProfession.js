@@ -4,6 +4,7 @@ const responseUpdateProfession = document.querySelector(".responseUpdateProfessi
 const formPesquisarProfissao = document.querySelector(".form-pesquisar-profissao");
 const formAtualizarProfissao = document.querySelector(".form-atualizar-profissao");
 const table = document.querySelector('table');
+const inputs = document.querySelectorAll("input");
 
 function createProfessionInTable(id, profession) {
   const tr = document.createElement('tr');
@@ -48,7 +49,7 @@ getDataProfession();
 function picProfession(e) {
   e.preventDefault()
   let xhr = new XMLHttpRequest();
-  let urlPic = "http://127.0.0.1:5001/search";
+  let urlPic = "http://127.0.0.1:5001/pic";
   const idInt = parseInt(id.value)
   const dataPic = JSON.stringify({
     id: idInt,
@@ -65,6 +66,7 @@ function picProfession(e) {
       } else {
         showDataProfession(myArr)
         description.disabled = false;
+        id.disabled = true;
       }
     }
   };
@@ -72,8 +74,8 @@ function picProfession(e) {
 }
 
 function showDataProfession(myArr) {
-  id.value = myArr[0].id;
-  description.value = myArr[0].description;
+  id.value = myArr["id"];
+  description.value = myArr["description"];
 };
 
 formPesquisarProfissao.addEventListener("submit", picProfession)
@@ -93,11 +95,11 @@ function updateProfession(e) {
     xhrUpdate.onreadystatechange = function () {
       if (xhrUpdate.readyState === 4 && xhrUpdate.status === 200) {
         const myArr = JSON.parse(this.responseText);
-        if (myArr.length > 0) {
+        if (myArr["id"] !== '' && myArr["description"] !== '') {
             responseUpdateProfession.textContent = "Profissão atualizada com sucesso"
             setTimeout(() => {
-            responseUpdateProfession.textContent = "";
-            location.reload(true); 
+              responseUpdateProfession.textContent = "";
+              location.reload(true); 
           }, 2000);
         } else {
             responseUpdateProfession.textContent = "Não foi possível alterar a profissão"

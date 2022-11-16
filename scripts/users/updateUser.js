@@ -115,7 +115,7 @@ function updateUser(e) {
   xhrUpdate.onreadystatechange = function () {
     if (xhrUpdate.readyState === 4 && xhrUpdate.status === 200) {
       const myArr = JSON.parse(this.responseText)
-      if(myArr.length > 0) {
+      if (myArr["id"] !== '' && myArr["name"] !== '') {
         responseUpdateUser.textContent = "Usuário atualizado com sucesso";
         setTimeout(() => {
           responseUpdateUser.textContent = "";
@@ -124,6 +124,17 @@ function updateUser(e) {
       } else {
         responseUpdateUser.textContent = "Não foi possivel alterar o usuário"
       }
+      // if(myArr.length !== 0) {
+      //   console.log('Array maior do que 0')
+      //   responseUpdateUser.textContent = "Usuário atualizado com sucesso";
+      //   setTimeout(() => {
+      //     responseUpdateUser.textContent = "";
+      //     location.reload(true); 
+      //   }, 2000);
+      // } else {
+      //   console.log('Array menor do que 0')
+      //   responseUpdateUser.textContent = "Não foi possivel alterar o usuário"
+      // }
     }
   };
   xhrUpdate.send(data);
