@@ -7,6 +7,7 @@ class MongoConnection:
         self.mydb = self.myclient["beautysalon"]
         self.collectionUsers = self.mydb["users"]
         self.collectionProfession = self.mydb["profession"]
+        self.collectionUserProfession = self.mydb["userProfession"]
     def close(self):
         self.myclient.close()
         

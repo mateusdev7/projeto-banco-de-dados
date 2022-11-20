@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/userProfession/userProfession.css">
+  <title>Relacionamento</title>
+</head>
+<body>
+    <aside class="container-menu">
+      <a href="../menu.html">
+        <img src="../assets/logo_icon.svg" style="margin-bottom: 2rem" />
+      </a>
+      <ul class="navegacao">
+        <li>
+          <p class="relatorio-button">Relatórios</p>
+          <ul class="sub-menu-relatorios">
+            <li>Sumarização</li>
+            <li>Junção de Tabelas</li>
+          </ul>
+        </li>
+        <li>
+          <p class="inserir-button">Inserir Registros</p>
+          <ul class="sub-menu-inserir">
+            <li><a href="../profession/insertProfession.html">Inserir Profissão</a></li>
+            <li><a href="../users/insertUser.html">Inserir Usuário</a></li>
+          </ul>
+        </li>
+        <li>
+          <p class="remove-button">Deletar Registros</p>
+          <ul class="sub-menu-remover-registros">
+            <li><a href="../profession/deleteProfession.html">Deletar Profissão</a></li>
+            <li><a href="../users/deleteUser.html">Deletar Usuário</a></li>
+          </ul>
+        </li>
+        <li>
+          <p class="atualizar-button">Atualizar Registros</p>
+          <ul class="sub-menu-atualizar">
+            <li><a href="../profession/updateProfession.html">Atualizar Profissão</a></li>
+            <li><a href="../users/updateUser.html">Atualizar Usuário</a></li>
+          </ul>
+        </li>
+        <li>
+          <p class="relacionar-button">Relacionar</p>
+          <ul class="sub-menu-relacionar">
+            <li><a href="./relacionarUserProfession.html">Realizar relacionamento</a></li>
+          </ul>
+        </li>
+      </ul>
+    </aside>
+    <div class="container-geral">
+      <div class="form-container">
+        <form class="form-relacao-profissao-user">
+          <h1>Relacionamento</h1>
+          <div>
+            <label for="id">ID do usuário</label>
+            <input type="text" id="id" name="id" required placeholder="Insira aqui o ID" />
+          </div>
+          <div>
+            <label for="profession">Profissão</label>
+            <input type="text" id="profession" name="profession" placeholder="Profissão para relacionar" required />
+          </div>
+          <button>Confirmar</button>
+          <p
+            class="responseRelationProfessionUser"
+            style="
+              color: blue;
+              font-weight: bold;
+              letter-spacing: 1px;
+              grid-column: 1/-1;
+            "
+          ></p>
+        </form>
+      </div>
+    </div>
+    <div class="container-table">
+        <table class="tableUser">
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>CPF</th>
+          </tr>
+        </table>
+        <table class="tableProfession">
+          <tr>
+            <th>ID</th>
+            <th>Nome Profissão</th>
+          </tr>
+        </table>
+      </div>
+</body>
+</html>

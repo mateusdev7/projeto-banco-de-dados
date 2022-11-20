@@ -147,7 +147,8 @@ table {
 .sub-menu-relatorios li,
 .sub-menu-remover-registros li,
 .sub-menu-inserir li,
-.sub-menu-atualizar li {
+.sub-menu-atualizar li,
+.sub-menu-relacionar li {
   margin-bottom: 0px;
   margin-left: 1.7rem;
   margin-top: 0.5rem;
@@ -157,7 +158,8 @@ table {
 .sub-menu-relatorios li:hover,
 .sub-menu-remover-registros li:hover,
 .sub-menu-inserir li:hover,
-.sub-menu-atualizar li:hover {
+.sub-menu-atualizar li:hover,
+.sub-menu-relacionar li:hover {
   color: #ff8a00;
   transition: all 0.2s ease-in-out;
 }
@@ -195,5 +197,15 @@ table {
 }
 .atualizar-button::before {
   content: url("../../assets/update_icon.svg");
+  display: inline-block;
+}
+
+.relacionar-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.relacionar-button::before {
+  content: url("../../assets/relation-user-profession.svg");
   display: inline-block;
 }
