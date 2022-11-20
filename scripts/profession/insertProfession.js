@@ -74,7 +74,7 @@ function sendJSON(e) {
     }
   };
 
-  var data = JSON.stringify({
+  const data = JSON.stringify({
     id: 0,
     description: (description.value).toLowerCase(),
   });

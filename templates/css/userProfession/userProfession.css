@@ -47,7 +47,9 @@ img {
   box-sizing: border-box;
 }
 input,
-label {
+label,
+select,
+option {
   display: block;
 }
 
@@ -88,17 +90,18 @@ table {
   width: 100%;
 }
 
-.container-table {
-  display: flex;
-  gap: 20px;
-  max-width: 1200px;
-  justify-content: center;
-  padding-left: 20px;
-  padding-right: 20px;
+select {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  border: none;
+  border: 2px solid #ccc;
 }
 
 .container-geral {
   display: grid;
+  grid-template-columns: repeat(2, 1fr);
   justify-content: center;
   align-items: center;
   padding-left: 20px;

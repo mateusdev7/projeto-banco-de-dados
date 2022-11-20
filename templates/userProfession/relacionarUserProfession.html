@@ -54,12 +54,14 @@
         <form class="form-relacao-profissao-user">
           <h1>Relacionamento</h1>
           <div>
-            <label for="id">ID do usuário</label>
-            <input type="text" id="id" name="id" required placeholder="Insira aqui o ID" />
+            <label for="cpf">CPF do usuário</label>
+            <input type="text" id="cpf" name="cpf" required placeholder="000.000.000-00" />
           </div>
           <div>
             <label for="profession">Profissão</label>
-            <input type="text" id="profession" name="profession" placeholder="Profissão para relacionar" required />
+            <select class="professionSelect" id="profession">
+              <option selected disabled value="">Selecione</option>
+            </select>
           </div>
           <button>Confirmar</button>
           <p
@@ -73,21 +75,14 @@
           ></p>
         </form>
       </div>
+      <table class="tableUser">
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>CPF</th>
+        </tr>
+      </table>
     </div>
-    <div class="container-table">
-        <table class="tableUser">
-          <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>CPF</th>
-          </tr>
-        </table>
-        <table class="tableProfession">
-          <tr>
-            <th>ID</th>
-            <th>Nome Profissão</th>
-          </tr>
-        </table>
-      </div>
+    <script src="../../scripts/userProfession/insertRelationUserProfession.js"></script>
 </body>
 </html>

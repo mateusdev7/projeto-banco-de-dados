@@ -4,7 +4,6 @@ from conexaoMongo.DataBaseConnectionMongo import MongoConnection
 sys.path.append('C:/Apache24/htdocs/projeto-banco-de-dados/projeto-banco-de-dados/')
 
 mongo = MongoConnection()
-
 class OperationsProfession():
     def insertOneProfession(data: json):
         mongo.connect()
