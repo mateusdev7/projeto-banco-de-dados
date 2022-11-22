@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/relatorio/relatorio.css">
+  <title>Sumarização</title>
+</head>
+<body>
+    <aside class="container-menu">
+      <a href="../menu.html">
+        <img src="../assets/logo_icon.svg" style="margin-bottom: 2rem" />
+      </a>
+      <ul class="navegacao">
+        <li>
+          <p class="relatorio-button">Relatórios</p>
+          <ul class="sub-menu-relatorios">
+            <li><a href="./sumarizacao.html">Sumarização</a></li>
+          </ul>
+        </li>
+        <li>
+          <p class="inserir-button">Inserir Registros</p>
+          <ul class="sub-menu-inserir">
+            <li><a href="../profession/insertProfession.html">Inserir Profissão</a></li>
+            <li><a href="../users/insertUser.html">Inserir Usuário</a></li>
+          </ul>
+        </li>
+        <li>
+          <p class="remove-button">Deletar Registros</p>
+          <ul class="sub-menu-remover-registros">
+            <li><a href="../profession/deleteProfession.html">Deletar Profissão</a></li>
+            <li><a href="../users/deleteUser.html">Deletar Usuário</a></li>
+          </ul>
+        </li>
+        <li>
+          <p class="atualizar-button">Atualizar Registros</p>
+          <ul class="sub-menu-atualizar">
+            <li><a href="../profession/updateProfession.html">Atualizar Profissão</a></li>
+            <li><a href="../users/updateUser.html">Atualizar Usuário</a></li>
+          </ul>
+        </li>
+        <li>
+          <p class="relacionar-button">Relacionar</p>
+          <ul class="sub-menu-relacionar">
+            <li><a href="./relacionarUserProfession.html">Realizar relacionamento</a></li>
+          </ul>
+        </li>
+      </ul>
+    </aside>
+    <div class="container-geral">
+      <table class="tableUserProfessionSumarizacaoUm">
+        <tr>
+          <th>Quantidade</th>
+          <th>Profissão</th>
+        </tr>
+      </table>
+      <table class="tableUserProfessionSumarizacaoDois">
+        <tr>
+          <th>CPF</th>
+          <th>Profissão</th>
+        </tr>
+      </table>
+    </div>
+    <script src="../../scripts/userProfession/getRelationUserProfession.js"></script>
+</body>
+</html>

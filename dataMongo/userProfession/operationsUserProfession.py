@@ -1,5 +1,6 @@
 import sys
 import json
+from pymongo import MongoClient
 from conexaoMongo.DataBaseConnectionMongo import MongoConnection
 sys.path.append('C:/Apache24/htdocs/projeto-banco-de-dados/projeto-banco-de-dados/')
 
@@ -42,4 +43,50 @@ class OperationsUserProfession():
         else:
             lastUserProfession = list[-1]
         return lastUserProfession
+    
+    
+    def aggregateUserProfession():
+        list = []
+        client = MongoClient("mongodb://localhost:27017/")
+        result = client['beautysalon']['userProfession'].aggregate(
+        [
+            {
+                '$lookup': {
+                    'from': 'users', 
+                    'localField': 'cpf', 
+                    'foreignField': 'cpf', 
+                    'as': 'users'
+                }
+            },
+            {
+                '$unwind': {
+                    'path': '$users'
+                }
+            }, 
+            {
+                '$project': {
+                    'description': 1, 
+                    'users': '$users.cpf'
+                }
+            }, 
+            {
+                '$group': {
+                    '_id': '$description', 
+                    'quant': {
+                        '$sum': 1
+                    }
+                }
+            }
+        ])
+        for x in result:
+            userProfession = {
+                    "description" : x["_id"],
+                    "quant" : x["quant"]
+                }
+            list.append(userProfession)
+        if (list == []):
+            return None
+        else:
+            return list
+    
     

@@ -22,5 +22,12 @@ def insert():
         print("Entrou no else")
         return []
 
+@app.route('/search', methods=['GET','POST'])
+@cross_origin(supports_credentials=True)
+def search():
+    response = OperationsUserProfession.aggregateUserProfession()
+    returnJson = json.dumps(response, ensure_ascii=False).encode('utf8')
+    return returnJson
+
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port=5002, debug=False, threaded=True)

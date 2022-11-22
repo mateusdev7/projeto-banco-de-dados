@@ -3,4 +3,4 @@ sys.path.append('C:/Apache24/htdocs/projeto-banco-de-dados/projeto-banco-de-dado
 from dataMongo.profession.operationsProfession import OperationsProfession
 from dataMongo.userProfession.operationsUserProfession import OperationsUserProfession
 
-print(OperationsUserProfession.searchUserWithCpf('18727714756'))
+OperationsUserProfession.aggregateUserProfession()
