@@ -89,4 +89,38 @@ class OperationsUserProfession():
         else:
             return list
     
+    def aggregationUserProfessionDois():
+        list = []
+        client = MongoClient("mongodb://localhost:27017/")
+        result = client['beautysalon']['users'].aggregate(
+            [
+                {
+                    '$lookup': {
+                        'from': 'userProfession', 
+                        'localField': 'cpf', 
+                        'foreignField': 'cpf', 
+                        'as': 'userProfession'
+                    }
+                }, {
+                    '$unwind': {
+                        'path': '$userProfession'
+                    }
+                }, {
+                    '$project': {
+                        'description': '$userProfession.description', 
+                        'cpf': '$cpf'
+                    }
+                }
+            ]
+        )
+        for x in result:
+            userProfession = {
+                    "cpf" : x["cpf"],
+                    "description" : x["description"]
+                }
+            list.append(userProfession)
+        if (list == []):
+            return None
+        else:
+            return list
     

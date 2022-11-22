@@ -22,10 +22,17 @@ def insert():
         print("Entrou no else")
         return []
 
-@app.route('/search', methods=['GET','POST'])
+@app.route('/searchQuantityProfession', methods=['GET','POST'])
 @cross_origin(supports_credentials=True)
-def search():
+def searchQuantityProfession():
     response = OperationsUserProfession.aggregateUserProfession()
+    returnJson = json.dumps(response, ensure_ascii=False).encode('utf8')
+    return returnJson
+
+@app.route('/searchCpfProfession', methods=['GET','POST'])
+@cross_origin(supports_credentials=True)
+def searchCpfProfession():
+    response = OperationsUserProfession.aggregationUserProfessionDois()
     returnJson = json.dumps(response, ensure_ascii=False).encode('utf8')
     return returnJson
 
