@@ -1,34 +1,26 @@
-<h1>Passo a passo</h1>
-<ol>
-  <li>Instalar o WAMP ou XAMP - Entrar no link abaixo para realizar a instalação</li>
-  <a href="https://blog.templatetoaster.com/how-to-install-wamp/">Clique aqui e siga o passo a passo</a>
-  <li>Baixar ou clonar o projeto</li>
-  <p>Ao baixar o projeto, tirar todos os arquivos da pasta e colocar na pasta raiz HTDOCS que está dentro da pasta APACHE do seu disco <br> (ISSO É SUPER IMPORTANTE PARA O FUNCIONAMENTO DO PROJETO, POIS, TODAS AS PASTAS ESTÃO COM O PATH CORRETO PARA A RAIZ DO HTDOCS)</p>
-  <li>Rode os comandos:</li>
-  <h4>pip install mysqlclient</h4>
-  <h4>pip install mysql-connector-python</h4>
-  <h4>pip install pymysql</h4>
-  
-  <br>
-  <p>Após fazer as instalações acima, vá na pasta ./service que está no projeto e dê play nos 3 servidores disponíveis, eles irão executar as API's 
-  para que elas funcionem e recebam os dados. Se possível, faça isso em 3 CMDS ou PowerShell diferentes.</p>
-  <p>Para rodar o comando pelo cmd, vá para a raiz do projeto e execute de forma separada em 3 cmd's diferentes os comandos: </p>
-  <h4>python ProfessionService.py</h4>
-  <img style="max-width: 100%" src="https://imgur.com/lFLpzV4.jpg"/>
-  <h4>python UserProfession.py</h4>
-  <img style="max-width: 100%" src="https://imgur.com/tcpdKpn.jpg"/>
-  <h4>python UsersService.py</h4>
-  <img style="max-width: 100%" src="https://imgur.com/UfKCnUM.jpg"/>
-</ol>
+<h1>Requisitos iniciais</h1>
+<p>Instalar o WAMP ou XAMP - Entrar no link abaixo para realizar a instalação</p>
+<a href="https://blog.templatetoaster.com/how-to-install-wamp/">Clique aqui e siga o passo a passo</a>
+<p>Baixar ou clonar o projeto</p>
+<p>Ao baixar o projeto, altere o "sys.path.append" para a localização que você colocou no seu computador. Como os arquivos devem estar sempre dentro da pasta Apache24/htdocs, basta alterar, se necessário, o final do caminho.</p>
+<img style="max-width: 100%" src="https://imgur.com/EHnDHJy.jpg"/>
+<h3>Instale a dependência necessária com o comando abaixo:</h3>
+<p>pip install pymongo</p>
+<h1>Baixando MongoDBCompass</h1>
+<p>Após fazer todos esses processos, baixe o MongoDBCompass por <a href="https://www.mongodb.com/try/download/shell">aqui</a></p>
+<p>Entre no programa, crie uma data base com o nome de "beautysalon" e dentro dela crie 3 coleções com os nomes de "profession", "userProfession" e "users"</p>
+<h1>Iniciando os servidores</h1>
+<p>Após fazer os processos acima, vá na pasta ./service que está no projeto e inicie os 3 servidores disponíveis, eles irão executar as API's 
+para que elas funcionem e recebam os dados. Se possível, faça isso em 3 CMDS ou PowerShell diferentes.</p>
+<p>Comandos: </p>
+<h4>python ProfessionService.py</h4>
+<img style="max-width: 100%" src="https://imgur.com/lFLpzV4.jpg"/>
+<h4>python UserProfession.py</h4>
+<img style="max-width: 100%" src="https://imgur.com/tcpdKpn.jpg"/>
+<h4>python UsersService.py</h4>
+<img style="max-width: 100%" src="https://imgur.com/UfKCnUM.jpg"/>
 <h1>Passo final</h1>
-<p>Após executar todos os comandos supracitados, entre no sql developer e crie as tabelas com os códigos que estão na pasta ./model/users/users.sql e ./model/profession/profession.sql </p>
-<p>Com isso, os servidores vão estar no Ar e todos os processos estaram funcionando.</p>
+<p>Abra o menu.html com o live server e utilize o sistema</p>
 
-<h1>Link para o vídeo</h1>
-<a href="https://www.youtube.com/watch?v=Wpw8MsIgYGM&ab_channel=MateusPaulo">Clique aqui e acesse o vídeo</a>
-
-<h1>Imagens</h1>
-<img style="max-width: 100%" src="https://imgur.com/USfznXL.jpg"/>
-<img style="max-width: 100%" src="https://imgur.com/QnkzbPt.jpg"/>
 
 
