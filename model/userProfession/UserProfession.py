@@ -22,4 +22,7 @@ class UserProfession(object):
     def set_description(self, newDescription):
         self.description = newDescription
     
+    def to_string(self):
+        print("ID: " + self.id + "\nCPF: " + self.cpf + "\nDescription: " + self.description)
+    
     

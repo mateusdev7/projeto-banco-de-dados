@@ -36,3 +36,6 @@ class Users(object):
     def set_cpf(self, newCpf):
         self.cpf = newCpf
     
+    def to_string(self):
+        print("ID: " + self.id + "\n Name: " + self.name + "\nEmail: " + self.email + "\nDescription: " + self.description + "\nCPF: " + self.cpf)
+    

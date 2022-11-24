@@ -15,3 +15,6 @@ class Profession(object):
     def set_description(self, newDescription):
         self.id = newDescription
     
+    def to_string(self):
+        print("ID: " + self.id + "\nDescription: " + self.description)
+    
