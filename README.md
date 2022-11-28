@@ -1,5 +1,5 @@
 <h1>Requisitos iniciais</h1>
-<p>Instalar o WAMP ou XAMP - Entrar no link abaixo para realizar a instalação</p>
+<p>Instalar o WAMP - Entrar no link abaixo para realizar a instalação</p>
 <a href="https://blog.templatetoaster.com/how-to-install-wamp/">Clique aqui e siga o passo a passo</a>
 <p>Baixar ou clonar o projeto</p>
 <h3>Instale a dependência necessária com o comando abaixo:</h3>
